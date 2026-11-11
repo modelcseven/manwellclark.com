@@ -6,7 +6,7 @@
   <title>Manwell Clark | Senior Technical Program Manager — AI Platforms &amp; Cloud Infrastructure</title>
   <meta name="description" content="Manwell Clark — Senior Technical Program Manager with 27 years delivering AI/ML platforms, cloud infrastructure and security programs across distributed global teams. PMP, CISM, CISA. Open to remote Sr./Staff TPM and AI program leadership roles.">
   <link rel="canonical" href="https://manwellclark.com/">
-  <meta name="theme-color" content="#0a0a0b">
+  <meta name="theme-color" content="#0b0d12">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
   <meta property="og:type" content="profile">
@@ -18,8 +18,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="preload" href="/assets/bebas-neue-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/assets/fonts.css">
   <link rel="stylesheet" href="/assets/fontawesome.min.css">
   <link rel="stylesheet" href="/assets/leaflet.css">
@@ -46,22 +45,55 @@
 
 <a class="sr-only" href="#main">Skip to content</a>
 
-<!-- ============ NAV ============ -->
-<header class="nav">
-  <div class="wrap">
-    <a class="brand" href="#top" aria-label="Manwell Clark — home">
-      <span class="display">Manwell Clark</span>
-      <small>Pragmatic Force Multiplier</small>
-    </a>
-    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><i class="fa-solid fa-bars"></i></button>
-    <ul class="nav-links" id="navlinks">
-      <li><a href="#why">Why Me</a></li>
-      <li><a href="#impact">Impact</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#builds">Builds</a></li>
-      <li><a href="#credentials">Credentials</a></li>
-      <li><a class="btn btn-primary btn-sm" href="#contact"><i class="fa-solid fa-paper-plane"></i> Let's talk</a></li>
-    </ul>
+<!-- ============ SIDEBAR (Alpino-style) ============ -->
+<aside class="sidebar" id="sidebar" aria-label="Site navigation">
+  <a class="brand" href="#top" aria-label="Manwell Clark — home">
+    <span class="logo-mark" aria-hidden="true">MC</span>
+    <span class="brand-text"><strong>Manwell Clark</strong><small>Pragmatic Force Multiplier</small></span>
+  </a>
+
+  <div class="profile-mini">
+    <span class="avatar" aria-hidden="true">MC<span class="presence"></span></span>
+    <div>
+      <strong>Senior TPM</strong>
+      <small>AI Platforms · Cloud · Governance</small>
+    </div>
+  </div>
+
+  <p class="nav-label">Portfolio</p>
+  <ul class="side-nav" id="navlinks">
+    <li><a href="#top" class="active"><i class="fa-solid fa-gauge-high"></i> Overview</a></li>
+    <li><a href="#why"><i class="fa-solid fa-user-check"></i> Why Me</a></li>
+    <li><a href="#impact"><i class="fa-solid fa-chart-line"></i> Impact</a></li>
+    <li><a href="#experience"><i class="fa-solid fa-briefcase"></i> Experience</a></li>
+    <li><a href="#builds"><i class="fa-solid fa-code-branch"></i> Builds</a></li>
+    <li><a href="#framework"><i class="fa-solid fa-diagram-project"></i> S.P.E.E.D.</a></li>
+    <li><a href="#credentials"><i class="fa-solid fa-award"></i> Credentials</a></li>
+  </ul>
+
+  <p class="nav-label">Connect</p>
+  <ul class="side-nav">
+    <li><a href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact</a></li>
+    <li><a href="https://www.linkedin.com/in/clarkharpervisions/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
+    <li><a href="https://github.com/modelcseven" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a></li>
+  </ul>
+
+  <div class="side-card">
+    <span class="status"><span class="dot"></span> Open to new roles</span>
+    <p>Remote · US · Available for Sr./Staff TPM and AI program leadership.</p>
+    <a class="btn btn-primary btn-block" href="mailto:manwell.clark@gmail.com?subject=Opportunity%20for%20Manwell%20Clark"><i class="fa-solid fa-envelope"></i> Hire Manwell</a>
+  </div>
+</aside>
+<div class="scrim" hidden></div>
+
+<div class="shell">
+<header class="topbar">
+  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar"><i class="fa-solid fa-bars"></i></button>
+  <nav class="crumbs" aria-label="Breadcrumb"><span>Portfolio</span><i class="fa-solid fa-chevron-right"></i><strong id="crumb">Overview</strong></nav>
+  <div class="top-actions">
+    <a class="icon-btn" href="mailto:manwell.clark@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+    <a class="icon-btn" href="tel:+17377667424" aria-label="Call"><i class="fa-solid fa-phone"></i></a>
+    <a class="btn btn-primary btn-sm" href="#contact"><i class="fa-solid fa-paper-plane"></i> Let's talk</a>
   </div>
 </header>
 
@@ -100,10 +132,10 @@
 <!-- ============ STAT STRIP ============ -->
 <div class="stats">
   <div class="wrap grid g4">
-    <div class="card stat reveal"><div class="num">27 yrs</div><div class="lbl">IT program &amp; infrastructure leadership</div></div>
-    <div class="card stat reveal"><div class="num">$287M</div><div class="lbl">Portfolio delivered</div></div>
-    <div class="card stat reveal"><div class="num">68</div><div class="lbl">Person SRE org built from zero</div></div>
-    <div class="card stat reveal"><div class="num">99.9%</div><div class="lbl">SLA compliance across 360+ incidents</div></div>
+    <div class="card stat reveal"><span class="kpi-icon"><i class="fa-solid fa-hourglass-half"></i></span><div><div class="num">27 yrs</div><div class="lbl">IT program &amp; infrastructure leadership</div></div></div>
+    <div class="card stat reveal"><span class="kpi-icon"><i class="fa-solid fa-sack-dollar"></i></span><div><div class="num">$287M</div><div class="lbl">Portfolio delivered</div></div></div>
+    <div class="card stat reveal"><span class="kpi-icon"><i class="fa-solid fa-users-gear"></i></span><div><div class="num">68</div><div class="lbl">Person SRE org built from zero</div></div></div>
+    <div class="card stat reveal"><span class="kpi-icon"><i class="fa-solid fa-signal"></i></span><div><div class="num">99.9%</div><div class="lbl">SLA compliance, 360+ incidents</div></div></div>
   </div>
 </div>
 
@@ -145,7 +177,7 @@
     <!-- Recruiter quick facts -->
     <div class="card recruiter reveal" style="margin-top:28px" id="recruiters">
       <p class="eyebrow" style="margin-bottom:4px"><i class="fa-solid fa-user-tie"></i> For recruiters &amp; hiring managers</p>
-      <h3 class="serif" style="font-size:1.7rem;margin:0">The 30-second version</h3>
+      <h3 class="serif" style="margin:0">The 30-second version</h3>
       <dl class="facts">
         <div><dt>Target roles</dt><dd>Sr./Staff Technical Program Manager · AI Program Lead · AI Architect</dd></div>
         <div><dt>Location</dt><dd>Leander, TX (Austin) · Remote US</dd></div>
@@ -180,9 +212,9 @@
       <div class="card reveal"><div class="num">$200K</div><h3>Annual savings</h3><p>Reduced operational toil 25% through automation and SRE practices.</p></div>
     </div>
 
-    <div class="reveal" style="margin-top:56px">
+    <div class="reveal" style="margin-top:28px">
       <p class="eyebrow">Global footprint</p>
-      <h3 class="serif" style="font-size:1.8rem;margin:0 0 18px">Programs delivered across 17 locations in the US and Europe</h3>
+      <h3 class="serif" style="font-size:1.15rem;margin:0 0 14px">Programs delivered across 17 locations in the US and Europe</h3>
       <div id="footprint" role="img" aria-label="Map of regions in the United States and Europe where Manwell Clark has led programs"></div>
       <div class="legend"><span class="us">United States</span><span class="eu">Europe &amp; NATO partners</span></div>
     </div>
@@ -372,10 +404,10 @@
       <div class="card speed reveal"><div class="letter">D</div><h3>Delivery</h3><p>Outcomes measured in business impact, not activity.</p></div>
     </div>
 
-    <div class="grid g3 skillset" style="margin-top:44px">
-      <div class="card reveal"><h3><i class="fa-solid fa-brain" style="color:var(--teal-light)"></i> AI &amp; Machine Learning</h3><div class="tags"><span class="tag">LLMs</span><span class="tag">MLOps</span><span class="tag">NLP</span><span class="tag">Computer Vision</span><span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">Scikit-learn</span></div></div>
-      <div class="card reveal"><h3><i class="fa-solid fa-cloud" style="color:var(--teal-light)"></i> Cloud &amp; Infrastructure</h3><div class="tags"><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">Prometheus</span></div></div>
-      <div class="card reveal"><h3><i class="fa-solid fa-diagram-project" style="color:var(--teal-light)"></i> Delivery &amp; Governance</h3><div class="tags"><span class="tag">Agile / Scrum</span><span class="tag">OKRs</span><span class="tag">Portfolio Mgmt</span><span class="tag">Zero Trust</span><span class="tag">Risk &amp; Audit</span><span class="tag">ITSM</span></div></div>
+    <div class="grid g3 skillset" style="margin-top:18px">
+      <div class="card reveal"><h3><i class="fa-solid fa-brain" style="color:var(--accent)"></i> AI &amp; Machine Learning</h3><div class="tags"><span class="tag">LLMs</span><span class="tag">MLOps</span><span class="tag">NLP</span><span class="tag">Computer Vision</span><span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">Scikit-learn</span></div></div>
+      <div class="card reveal"><h3><i class="fa-solid fa-cloud" style="color:var(--accent)"></i> Cloud &amp; Infrastructure</h3><div class="tags"><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">Prometheus</span></div></div>
+      <div class="card reveal"><h3><i class="fa-solid fa-diagram-project" style="color:var(--accent)"></i> Delivery &amp; Governance</h3><div class="tags"><span class="tag">Agile / Scrum</span><span class="tag">OKRs</span><span class="tag">Portfolio Mgmt</span><span class="tag">Zero Trust</span><span class="tag">Risk &amp; Audit</span><span class="tag">ITSM</span></div></div>
     </div>
   </div>
 </section>
@@ -428,6 +460,7 @@
     <span>Deployed from GitHub on CHV Deploy</span>
   </div>
 </footer>
+</div><!-- /shell -->
 
 <div class="toast" role="status" aria-live="polite"></div>
 
