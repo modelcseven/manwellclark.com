@@ -7,10 +7,7 @@ Static site (HTML/CSS/JS, no build step), self-hosted fonts and icons, served by
 ## Structure
 ```
 index.html            single-page site
-assets/css            site.css (design tokens) + fonts.css
-assets/js/site.js     nav, reveal, copy-email, résumé check, footprint map
-assets/img/og-card.png  LinkedIn / social preview image
-assets/vendor         Font Awesome 6.4, Leaflet 1.9.4 (self-hosted)
+assets/               CSS, JS, fonts, icons (Font Awesome 6.4), Leaflet 1.9.4, og-card.png — all self-hosted
 resume/               put Manwell-Clark-Resume.pdf here — the résumé buttons appear automatically
 Dockerfile, nginx.conf  container used by Coolify
 ```
