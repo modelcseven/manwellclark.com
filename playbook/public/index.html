@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Playbook · Manwell Clark</title>
+  <meta name="theme-color" content="#0b0d12">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+
+<!-- Login -->
+<div id="login" class="login" hidden>
+  <form class="card login-card" id="loginForm">
+    <span class="logo-mark">MC</span>
+    <h1>Playbook</h1>
+    <p class="muted">Private job-search command center</p>
+    <label for="pw">Password</label>
+    <input id="pw" type="password" autocomplete="current-password" required>
+    <p class="error" id="loginErr" role="alert"></p>
+    <button class="btn btn-primary btn-block" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Sign in</button>
+  </form>
+</div>
+
+<!-- App -->
+<div id="app" hidden>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#dashboard">
+      <span class="logo-mark">MC</span>
+      <span class="brand-text"><strong>Playbook</strong><small>Remote job command center</small></span>
+    </a>
+    <p class="nav-label">Track</p>
+    <ul class="side-nav" id="nav">
+      <li><a href="#dashboard" data-view="dashboard"><i class="fa-solid fa-gauge-high"></i> Dashboard</a></li>
+      <li><a href="#today" data-view="today"><i class="fa-solid fa-sun"></i> Today <span class="pill" id="todayPill"></span></a></li>
+      <li><a href="#applications" data-view="applications"><i class="fa-solid fa-file-signature"></i> Applications</a></li>
+      <li><a href="#outreach" data-view="outreach"><i class="fa-solid fa-paper-plane"></i> Outreach</a></li>
+      <li><a href="#targets" data-view="targets"><i class="fa-solid fa-building"></i> Target companies</a></li>
+      <li><a href="#metrics" data-view="metrics"><i class="fa-solid fa-chart-column"></i> Weekly metrics</a></li>
+    </ul>
+    <p class="nav-label">Plan</p>
+    <ul class="side-nav">
+      <li><a href="#plan" data-view="plan"><i class="fa-solid fa-list-check"></i> 30-day plan</a></li>
+      <li><a href="#roles" data-view="roles"><i class="fa-solid fa-bullseye"></i> Roles &amp; scripts</a></li>
+    </ul>
+    <div class="side-card">
+      <span class="status" id="saveStatus"><span class="dot"></span> Saved</span>
+      <p><a href="https://manwellclark.com" target="_blank" rel="noopener">manwellclark.com</a> · <a href="#" id="exportBtn">Export</a> · <a href="#" id="logoutBtn">Sign out</a></p>
+    </div>
+  </aside>
+  <div class="scrim" hidden></div>
+
+  <div class="shell">
+    <header class="topbar">
+      <button class="nav-toggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+      <nav class="crumbs"><span>Playbook</span><i class="fa-solid fa-chevron-right"></i><strong id="crumb">Dashboard</strong></nav>
+      <div class="top-actions">
+        <button class="btn btn-ghost btn-sm" data-add="outreach"><i class="fa-solid fa-plus"></i> Log message</button>
+        <button class="btn btn-primary btn-sm" data-add="applications"><i class="fa-solid fa-plus"></i> Add application</button>
+      </div>
+    </header>
+    <main id="view" class="wrap"></main>
+  </div>
+</div>
+
+<!-- Modal -->
+<dialog id="modal" class="modal">
+  <form method="dialog" id="modalForm" class="card">
+    <div class="modal-head"><h2 id="modalTitle">Edit</h2><button type="button" class="icon-btn" id="modalClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button></div>
+    <div id="modalBody" class="form-grid"></div>
+    <div class="modal-foot">
+      <button type="button" class="btn btn-ghost" id="modalDelete"><i class="fa-solid fa-trash"></i> Delete</button>
+      <span class="spacer"></span>
+      <button type="button" class="btn btn-ghost" id="modalCancel">Cancel</button>
+      <button type="submit" class="btn btn-primary" id="modalSave"><i class="fa-solid fa-check"></i> Save</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" role="status" aria-live="polite"></div>
+<script src="/app.js"></script>
+</body>
+</html>
