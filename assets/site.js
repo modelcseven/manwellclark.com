@@ -3,17 +3,36 @@
   var yr = document.getElementById('yr');
   if (yr) yr.textContent = new Date().getFullYear();
 
-  // Mobile nav
+  // Sidebar (off-canvas under 1000px)
   var toggle = document.querySelector('.nav-toggle');
-  var links = document.getElementById('navlinks');
-  if (toggle && links) {
-    toggle.addEventListener('click', function () {
-      var open = links.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    links.addEventListener('click', function (e) {
-      if (e.target.closest('a')) { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
-    });
+  var sidebar = document.getElementById('sidebar');
+  var scrim = document.querySelector('.scrim');
+  function setOpen(open) {
+    if (!sidebar) return;
+    sidebar.classList.toggle('open', open);
+    if (scrim) scrim.hidden = !open;
+    if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  if (toggle) toggle.addEventListener('click', function () { setOpen(!sidebar.classList.contains('open')); });
+  if (scrim) scrim.addEventListener('click', function () { setOpen(false); });
+  if (sidebar) sidebar.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+
+  // Active nav item + breadcrumb follow the section in view
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('#navlinks a[href^="#"]'));
+  var crumb = document.getElementById('crumb');
+  if ('IntersectionObserver' in window && navLinks.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var id = '#' + en.target.id;
+        navLinks.forEach(function (a) {
+          var on = a.getAttribute('href') === id;
+          a.classList.toggle('active', on);
+          if (on && crumb) crumb.textContent = a.textContent.trim();
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    navLinks.forEach(function (a) { var s = document.querySelector(a.getAttribute('href')); if (s) spy.observe(s); });
   }
 
   // Reveal on scroll
@@ -77,10 +96,10 @@
     ];
     var group = [];
     sites.forEach(function (s) {
-      var c = s.g === 'us' ? '#f5c518' : '#8cc6d2';
+      var c = s.g === 'us' ? '#f5c518' : '#5cc8f5';
       L.circleMarker(s.ll, { radius: 10, color: c, weight: 1, opacity: .35, fillOpacity: .12 }).addTo(map);
       var m = L.circleMarker(s.ll, { radius: 5, color: c, weight: 2, fillColor: c, fillOpacity: .95 })
-        .bindPopup('<strong>' + s.n + '</strong><br><span style="color:#8f8d95">' + s.d + '</span>');
+        .bindPopup('<strong>' + s.n + '</strong><br><span style="color:#8a93a0">' + s.d + '</span>');
       m.addTo(map); group.push(s.ll);
     });
     map.fitBounds(group, { padding: [30, 30] });
