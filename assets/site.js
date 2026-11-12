@@ -1,49 +1,76 @@
 (function () {
-  // Year
   var yr = document.getElementById('yr');
   if (yr) yr.textContent = new Date().getFullYear();
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Sidebar (off-canvas under 1000px)
+  // Mobile menu
   var toggle = document.querySelector('.nav-toggle');
-  var sidebar = document.getElementById('sidebar');
-  var scrim = document.querySelector('.scrim');
-  function setOpen(open) {
-    if (!sidebar) return;
-    sidebar.classList.toggle('open', open);
-    if (scrim) scrim.hidden = !open;
-    if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  var menu = document.querySelector('.nav nav');
+  if (toggle && menu) {
+    toggle.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); } });
   }
-  if (toggle) toggle.addEventListener('click', function () { setOpen(!sidebar.classList.contains('open')); });
-  if (scrim) scrim.addEventListener('click', function () { setOpen(false); });
-  if (sidebar) sidebar.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
 
-  // Active nav item + breadcrumb follow the section in view
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll('#navlinks a[href^="#"]'));
-  var crumb = document.getElementById('crumb');
-  if ('IntersectionObserver' in window && navLinks.length) {
+  // Active nav link follows the section in view
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  if ('IntersectionObserver' in window) {
     var spy = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
-        var id = '#' + en.target.id;
-        navLinks.forEach(function (a) {
-          var on = a.getAttribute('href') === id;
-          a.classList.toggle('active', on);
-          if (on && crumb) crumb.textContent = a.textContent.trim();
-        });
+        links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id); });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    navLinks.forEach(function (a) { var s = document.querySelector(a.getAttribute('href')); if (s) spy.observe(s); });
+    links.forEach(function (a) { var s = document.querySelector(a.getAttribute('href')); if (s) spy.observe(s); });
   }
 
-  // Reveal on scroll
+  // Reveal on scroll (staggered within a grid)
   var els = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
+  if ('IntersectionObserver' in window && !reduce) {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var sibs = Array.prototype.indexOf.call(en.target.parentNode.children, en.target);
+        en.target.style.transitionDelay = Math.min(sibs, 6) * 60 + 'ms';
+        en.target.classList.add('in'); io.unobserve(en.target);
+      });
     }, { threshold: 0.12 });
     els.forEach(function (el) { io.observe(el); });
   } else {
     els.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // Cursor spotlight on tiles
+  document.addEventListener('pointermove', function (e) {
+    var t = e.target.closest && e.target.closest('.tile');
+    if (!t) return;
+    var r = t.getBoundingClientRect();
+    t.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    t.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
+
+  // Count-up stats
+  function countUp(el) {
+    var end = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    var pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+    if (reduce) return;
+    var start = null, dur = 1400;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min(1, (ts - start) / dur), v = end * (1 - Math.pow(1 - p, 3));
+      el.textContent = pre + v.toFixed(dec) + suf;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var nums = document.querySelectorAll('[data-count]');
+  if ('IntersectionObserver' in window) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { countUp(en.target); cio.unobserve(en.target); } });
+    }, { threshold: 0.6 });
+    nums.forEach(function (n) { cio.observe(n); });
   }
 
   // Toast + copy email
@@ -61,7 +88,7 @@
     });
   });
 
-  // Hide résumé buttons until the PDF is actually published (avoids a broken link)
+  // Hide résumé buttons until the PDF is published
   var resumeBtns = document.querySelectorAll('.js-resume');
   if (resumeBtns.length) {
     resumeBtns.forEach(function (b) { b.style.display = 'none'; });
@@ -71,16 +98,14 @@
     }).catch(function () {});
   }
 
-  // Footprint map — regional pins only (no unit or installation names)
+  // Footprint map — regional pins only
   function initMap() {
     var el = document.getElementById('footprint');
     if (!el || !window.L) return;
-    var map = L.map(el, { scrollWheelZoom: false, zoomControl: true, attributionControl: true, worldCopyJump: true })
-      .setView([44, -30], 2.4);
+    var map = L.map(el, { scrollWheelZoom: false, zoomControl: false, attributionControl: true, worldCopyJump: true, dragging: !L.Browser.mobile });
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
       maxZoom: 10, attribution: 'Tiles &copy; Esri'
     }).addTo(map);
-
     var sites = [
       { n: 'Washington, DC region', d: 'Program leadership', ll: [38.9, -77.04], g: 'us' },
       { n: 'Hampton Roads, VA', d: 'Platform engineering', ll: [37.08, -76.36], g: 'us' },
@@ -94,15 +119,15 @@
       { n: 'Northern Italy', d: 'Distributed operations', ll: [45.43, 10.28], g: 'eu' },
       { n: 'Southern Turkey', d: 'Distributed operations', ll: [37.0, 35.42], g: 'eu' }
     ];
-    var group = [];
+    var pts = [];
     sites.forEach(function (s) {
       var c = s.g === 'us' ? '#f5c518' : '#5cc8f5';
-      L.circleMarker(s.ll, { radius: 10, color: c, weight: 1, opacity: .35, fillOpacity: .12 }).addTo(map);
-      var m = L.circleMarker(s.ll, { radius: 5, color: c, weight: 2, fillColor: c, fillOpacity: .95 })
-        .bindPopup('<strong>' + s.n + '</strong><br><span style="color:#8a93a0">' + s.d + '</span>');
-      m.addTo(map); group.push(s.ll);
+      L.circleMarker(s.ll, { radius: 11, color: c, weight: 1, opacity: .3, fillOpacity: .1 }).addTo(map);
+      L.circleMarker(s.ll, { radius: 5, color: c, weight: 2, fillColor: c, fillOpacity: .95 })
+        .bindPopup('<strong>' + s.n + '</strong><br><span style="color:#7d8796">' + s.d + '</span>').addTo(map);
+      pts.push(s.ll);
     });
-    map.fitBounds(group, { padding: [30, 30] });
+    map.fitBounds(pts, { padding: [24, 24] });
   }
   if (document.readyState === 'complete') initMap();
   else window.addEventListener('load', initMap);
