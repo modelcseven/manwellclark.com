@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Manwell Clark | Senior Technical Program Manager — AI Platforms &amp; Cloud Infrastructure</title>
   <meta name="description" content="Manwell Clark — Senior Technical Program Manager with 27 years delivering AI/ML platforms, cloud infrastructure and security programs across distributed global teams. PMP, CISM, CISA. Open to remote Sr./Staff TPM and AI program leadership roles.">
   <link rel="canonical" href="https://manwellclark.com/">
-  <meta name="theme-color" content="#07090d">
+  <meta name="theme-color" content="#1e9ae8">
   <link rel="icon" href="/favicon.png" type="image/png">
-  <link rel="preload" as="image" href="/assets/img/lion-profile.webp">
 
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Manwell Clark — Senior Technical Program Manager, AI &amp; Cloud">
@@ -19,11 +18,12 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
 
+  <script>try{var t=localStorage.getItem('mc-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/assets/fonts.css?v=3">
+  <link rel="stylesheet" href="/assets/fonts.css?v=6">
   <link rel="stylesheet" href="/assets/fontawesome.min.css">
   <link rel="stylesheet" href="/assets/leaflet.css">
-  <link rel="stylesheet" href="/assets/site.css?v=5">
+  <link rel="stylesheet" href="/assets/site.css?v=6">
 
   <script type="application/ld+json">
   {
@@ -44,385 +44,317 @@
 </head>
 <body>
 <a class="sr-only" href="#main">Skip to content</a>
-<div class="bg-glow" aria-hidden="true"></div>
 
-<!-- ============ FLOATING NAV ============ -->
-<header class="nav">
-  <a class="nav-brand" href="#top" aria-label="Manwell Clark — home"><img class="nav-logo" src="/assets/img/sphere.webp" alt="" width="40" height="27"><span class="nav-name">Manwell Clark</span></a>
-  <nav aria-label="Sections">
-    <ul class="nav-links" id="navlinks">
-      <li><a href="#why">Why me</a></li>
-      <li><a href="#impact">Impact</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#builds">Builds</a></li>
-      <li><a href="#credentials">Credentials</a></li>
-    </ul>
+<!-- ============ MINI LEFT BAR (Alpino) ============ -->
+<aside class="minileftbar" aria-label="Quick navigation">
+  <a class="mini-logo" href="#top" aria-label="Home"><img src="/assets/img/sphere.webp" alt="" width="34" height="23"></a>
+  <button class="mini-btn menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="sidebar"><i class="fa-solid fa-bars"></i></button>
+  <nav class="mini-icons">
+    <a href="#top" title="Overview" aria-label="Overview"><i class="fa-solid fa-house"></i></a>
+    <a href="#impact" title="Impact" aria-label="Impact"><i class="fa-solid fa-chart-line"></i></a>
+    <a href="#experience" title="Experience" aria-label="Experience"><i class="fa-solid fa-briefcase"></i></a>
+    <a href="#builds" title="Builds" aria-label="Builds"><i class="fa-solid fa-code-branch"></i></a>
+    <a href="#credentials" title="Credentials" aria-label="Credentials"><i class="fa-solid fa-award"></i></a>
   </nav>
-  <a class="btn btn-primary btn-sm nav-cta" href="#contact">Let's talk <i class="fa-solid fa-arrow-right"></i></a>
-  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><i class="fa-solid fa-bars"></i></button>
-</header>
-
-<main id="main">
-
-<!-- ============ HERO BENTO ============ -->
-<section class="hero" id="top">
-  <div class="wrap bento hero-bento">
-
-    <article class="tile t-intro reveal">
-      <div class="tile-bg" style="background-image:url(/assets/img/lion-profile.webp)" aria-hidden="true"></div>
-      <span class="status-pill"><span class="pulse"></span> Open to remote Sr./Staff TPM roles</span>
-      <h1>I turn complex AI &amp; infrastructure programs into <span class="grad">shipped, reliable outcomes.</span></h1>
-      <p class="lede">Senior Technical Program Manager with <strong>27 years</strong> leading AI/ML platforms, cloud modernization and Zero Trust programs across distributed teams in the US and Europe. I also build — I architect and ship my own AI products, so I speak engineering fluently.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="mailto:manwell.clark@gmail.com?subject=Opportunity%20for%20Manwell%20Clark"><i class="fa-solid fa-calendar-check"></i> Book a 20-min intro</a>
-        <a class="btn btn-ghost js-resume" href="/resume/Manwell-Clark-Resume.pdf" download><i class="fa-solid fa-file-arrow-down"></i> Résumé</a>
-        <a class="btn btn-ghost" href="#impact">See the impact</a>
-      </div>
-    </article>
-
-    <article class="tile t-profile reveal">
-      <div class="profile-banner" style="background-image:url(/assets/img/austin-night.webp)" aria-hidden="true"></div>
-      <div class="avatar-ring"><span class="avatar">MC</span></div>
-      <h2>Manwell Clark</h2>
-      <p class="muted">Senior Technical Program Manager</p>
-      <ul class="facts-list">
-        <li><i class="fa-solid fa-location-dot"></i> Leander, TX · Remote US</li>
-        <li><i class="fa-solid fa-shield-halved"></i> Active TS/SCI</li>
-        <li><i class="fa-solid fa-flag-usa"></i> U.S. Veteran</li>
-        <li><i class="fa-solid fa-award"></i> PMP · CISM · CISA</li>
-      </ul>
-      <div class="social">
-        <a href="https://www.linkedin.com/in/clarkharpervisions/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="https://github.com/modelcseven" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-        <a href="mailto:manwell.clark@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-        <a href="tel:+17377667424" aria-label="Call"><i class="fa-solid fa-phone"></i></a>
-      </div>
-    </article>
-
-    <article class="tile t-stat reveal"><span class="stat-icon"><i class="fa-solid fa-hourglass-half"></i></span><div class="num" data-count="27" data-suffix=" yrs">27 yrs</div><p>IT program &amp; infrastructure leadership</p></article>
-    <article class="tile t-stat reveal"><span class="stat-icon green"><i class="fa-solid fa-sack-dollar"></i></span><div class="num" data-count="287" data-prefix="$" data-suffix="M">$287M</div><p>Portfolio delivered</p></article>
-    <article class="tile t-stat reveal"><span class="stat-icon amber"><i class="fa-solid fa-users-gear"></i></span><div class="num" data-count="68">68</div><p>Person SRE org built from zero</p></article>
-    <article class="tile t-stat reveal"><span class="stat-icon violet"><i class="fa-solid fa-signal"></i></span><div class="num" data-count="99.9" data-decimals="1" data-suffix="%">99.9%</div><p>SLA across 360+ incidents</p></article>
-
-    <article class="tile t-map reveal">
-      <div class="tile-head"><span class="label">Global footprint</span><span class="muted small">17 locations · US &amp; Europe</span></div>
-      <div id="footprint" role="img" aria-label="Map of regions in the United States and Europe where Manwell Clark has led programs"></div>
-    </article>
-
-    <article class="tile t-now reveal">
-      <span class="label"><span class="pulse"></span> Now building</span>
-      <h3>Private LLM gateway</h3>
-      <p>A home-grown language model behind an OpenAI-compatible API, powering Model-7's AI tools — plus the self-hosted platform this site runs on.</p>
-      <a class="link-arrow" href="#builds">All builds <i class="fa-solid fa-arrow-right"></i></a>
-    </article>
-
+  <div class="mini-bottom">
+    <button class="mini-btn theme-toggle" aria-label="Switch light or dark theme" title="Light / dark"><i class="fa-solid fa-moon"></i></button>
+    <a class="mini-btn" href="mailto:manwell.clark@gmail.com" aria-label="Email" title="Email"><i class="fa-solid fa-envelope"></i></a>
   </div>
-</section>
+</aside>
 
-<!-- ============ WHY ME ============ -->
-<section id="why">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="label">Why hire me</span>
-      <h2>What you get on day one</h2>
-      <p>Senior enough to own a program end to end. Technical enough to earn engineers' trust. Remote-native enough that distance is never the problem.</p>
+<!-- ============ SIDEBAR (Alpino user + menu) ============ -->
+<aside class="sidebar" id="sidebar" aria-label="Site menu">
+  <div class="user-info">
+    <div class="user-banner" style="background-image:url(/assets/img/austin-night.webp)" aria-hidden="true"></div>
+    <div class="image"><span class="avatar">MC</span><span class="online" title="Open to new roles"></span></div>
+    <div class="detail">
+      <h4>Manwell Clark</h4>
+      <small>manwell.clark@gmail.com</small>
     </div>
-    <div class="bento why-bento">
-      <article class="tile why reveal">
-        <span class="stat-icon"><i class="fa-solid fa-route"></i></span>
-        <h3>Ambiguity in, shipped roadmap out</h3>
-        <p>I decompose messy, high-stakes programs into milestones with clear owners, then drive them with risk-first execution.</p>
-        <div class="proof"><i class="fa-solid fa-circle-check"></i> Owned a $36M P&amp;L modernization; serial-to-IP cutover with 100% uptime.</div>
-      </article>
-      <article class="tile why reveal">
-        <span class="stat-icon green"><i class="fa-solid fa-earth-americas"></i></span>
-        <h3>Remote-first leadership that works</h3>
-        <p>Over a decade leading distributed teams across time zones: influence without authority, written-first, calm incident command.</p>
-        <div class="proof"><i class="fa-solid fa-circle-check"></i> Built a 68-person SRE org across 7 European sites; ~90% delivered virtually.</div>
-      </article>
-      <article class="tile why reveal">
-        <span class="stat-icon violet"><i class="fa-solid fa-microchip"></i></span>
-        <h3>A TPM who builds AI</h3>
-        <p>Through Model-7 I architect and ship AI products myself — LLM integration, voice AI, MLOps and self-hosted infrastructure.</p>
-        <div class="proof"><i class="fa-solid fa-circle-check"></i> This site deploys from GitHub to a platform I run.</div>
-      </article>
-      <article class="tile why reveal">
-        <span class="stat-icon amber"><i class="fa-solid fa-lock"></i></span>
-        <h3>Security &amp; governance built in</h3>
-        <p>CISM and CISA certified, with Zero Trust and audit-readiness experience in demanding environments.</p>
-        <div class="proof"><i class="fa-solid fa-circle-check"></i> Zero incidents through a classified migration; 35% less audit overhead.</div>
-      </article>
-      <article class="tile recruiter reveal" id="recruiters">
-        <div class="recruiter-head">
-          <div><span class="label"><i class="fa-solid fa-user-tie"></i> For recruiters</span><h3>The 30-second version</h3></div>
-          <div class="cta-row">
-            <button class="btn btn-primary btn-sm js-copy" data-copy="manwell.clark@gmail.com"><i class="fa-solid fa-copy"></i> Copy email</button>
-            <a class="btn btn-ghost btn-sm js-resume" href="/resume/Manwell-Clark-Resume.pdf" download><i class="fa-solid fa-file-arrow-down"></i> Résumé</a>
+    <div class="social">
+      <a href="https://www.linkedin.com/in/clarkharpervisions/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/modelcseven" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="tel:+17377667424" aria-label="Call"><i class="fa-solid fa-phone"></i></a>
+      <a href="mailto:manwell.clark@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </div>
+  <ul class="menu" id="navlinks">
+    <li class="header">MAIN</li>
+    <li><a href="#top" class="active"><i class="fa-solid fa-gauge-high"></i><span>Overview</span></a></li>
+    <li><a href="#why"><i class="fa-solid fa-user-check"></i><span>Why Me</span></a></li>
+    <li><a href="#impact"><i class="fa-solid fa-chart-line"></i><span>Impact</span><b class="badge b-blue">6</b></a></li>
+    <li class="header">PORTFOLIO</li>
+    <li><a href="#experience"><i class="fa-solid fa-briefcase"></i><span>Experience</span><b class="badge b-green">27y</b></a></li>
+    <li><a href="#builds"><i class="fa-solid fa-code-branch"></i><span>Builds</span><b class="badge b-amber">6</b></a></li>
+    <li><a href="#framework"><i class="fa-solid fa-diagram-project"></i><span>S.P.E.E.D.</span></a></li>
+    <li><a href="#credentials"><i class="fa-solid fa-award"></i><span>Credentials</span><b class="badge b-violet">8</b></a></li>
+    <li class="header">CONNECT</li>
+    <li><a href="#contact"><i class="fa-solid fa-paper-plane"></i><span>Contact</span></a></li>
+    <li><a href="https://www.linkedin.com/in/clarkharpervisions/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i><span>LinkedIn</span></a></li>
+    <li><a href="https://github.com/modelcseven" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i><span>GitHub</span></a></li>
+  </ul>
+  <div class="side-status"><span class="dot"></span> Open to remote Sr./Staff TPM roles</div>
+</aside>
+<div class="overlay" hidden></div>
+
+<!-- ============ CONTENT ============ -->
+<section class="content" id="main">
+
+  <div class="block-header" id="top">
+    <div>
+      <h2>Overview</h2>
+      <ul class="breadcrumb"><li><i class="fa-solid fa-house"></i> Manwell Clark</li><li>Senior Technical Program Manager</li></ul>
+    </div>
+    <div class="header-actions">
+      <a class="btn btn-default js-resume" href="/resume/Manwell-Clark-Resume.pdf" download><i class="fa-solid fa-file-arrow-down"></i> Résumé</a>
+      <a class="btn btn-primary" href="mailto:manwell.clark@gmail.com?subject=Opportunity%20for%20Manwell%20Clark"><i class="fa-solid fa-calendar-check"></i> Book a 20-min intro</a>
+    </div>
+  </div>
+
+  <!-- top counters -->
+  <div class="row r4">
+    <div class="card top-counter"><div class="body"><i class="fa-solid fa-hourglass-half icon c-blue"></i><h6>Years Leading Programs</h6><h3 data-count="27">27</h3><small>IT program &amp; infrastructure</small></div></div>
+    <div class="card top-counter"><div class="body"><i class="fa-solid fa-sack-dollar icon c-green"></i><h6>Portfolio Delivered</h6><h3 data-count="287" data-prefix="$" data-suffix="M">$287M</h3><small>Fleet-wide modernization</small></div></div>
+    <div class="card top-counter"><div class="body"><i class="fa-solid fa-users-gear icon c-amber"></i><h6>SRE Org Built</h6><h3 data-count="68">68</h3><small>Engineers, built from zero</small></div></div>
+    <div class="card top-counter"><div class="body"><i class="fa-solid fa-signal icon c-violet"></i><h6>SLA Compliance</h6><h3 data-count="99.9" data-decimals="1" data-suffix="%">99.9%</h3><small>Across 360+ incidents</small></div></div>
+  </div>
+
+  <!-- hero + recruiter (invoice-style) -->
+  <div class="row r84">
+    <div class="card hero-card">
+      <div class="body">
+        <div class="hero-bg" style="background-image:url(/assets/img/lion-profile.webp)" aria-hidden="true"></div>
+        <div class="hero-text">
+          <span class="pill"><span class="dot"></span> Open to new roles · Remote US</span>
+          <h1>I turn complex AI &amp; infrastructure programs into <span class="hl">shipped, reliable outcomes.</span></h1>
+          <p>Senior Technical Program Manager with <strong>27 years</strong> leading AI/ML platforms, cloud modernization and Zero Trust programs across distributed teams in the US and Europe. I also build — I architect and ship my own AI products, so I speak engineering fluently.</p>
+          <div class="btns">
+            <a class="btn btn-primary" href="mailto:manwell.clark@gmail.com?subject=Opportunity%20for%20Manwell%20Clark"><i class="fa-solid fa-envelope"></i> Let's talk</a>
+            <a class="btn btn-light" href="#impact">See the impact <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
-        <dl class="facts">
-          <div><dt>Target roles</dt><dd>Sr./Staff TPM · AI Program Lead · AI Architect</dd></div>
-          <div><dt>Location</dt><dd>Leander, TX · Remote US</dd></div>
-          <div><dt>Status</dt><dd>Open to new roles</dd></div>
-          <div><dt>Domains</dt><dd>AI/ML · Cloud &amp; SRE · Security · Portfolio</dd></div>
-          <div><dt>Certifications</dt><dd>PMP · CISM · CISA · PSM I · CSSBB · ITIL 4</dd></div>
-          <div><dt>Education · Clearance</dt><dd>MBA, IT Project Mgmt · Active TS/SCI</dd></div>
-        </dl>
-      </article>
+      </div>
     </div>
-  </div>
-</section>
 
-<!-- ============ STATEMENT BAND ============ -->
-<section class="statement" aria-label="Philosophy">
-  <div class="statement-bg" style="background-image:url(/assets/img/lion-eyes.webp)" aria-hidden="true"></div>
-  <div class="wrap statement-inner reveal">
-    <span class="label">Pragmatic force multiplier</span>
-    <p class="quote">Influence without authority.<br><span class="grad">Distributed teams, delivered.</span></p>
-  </div>
-</section>
-
-<!-- ============ IMPACT ============ -->
-<section id="impact">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="label">Impact</span>
-      <h2>Results that speak</h2>
-      <p>Outcomes from programs I led — reliability, scale, team building and cost.</p>
-    </div>
-    <div class="bento impact-bento">
-      <article class="tile impact big reveal"><div class="tile-bg right" style="background-image:url(/assets/img/lion-portrait.webp)" aria-hidden="true"></div><div class="num">99.9%</div><h3>SLA compliance</h3><p>Virtual war-room command across 360+ incidents, backed by self-healing monitoring.</p></article>
-      <article class="tile impact reveal"><div class="num">100%</div><h3>Uptime through migration</h3><p>Zero downtime during critical modernization in classified environments.</p></article>
-      <article class="tile impact reveal"><div class="num">24→3</div><h3>Months to deploy</h3><p>Deployment cycles cut from 24 months to 90 days with a cloud-native transformation.</p></article>
-      <article class="tile impact reveal"><div class="num">14</div><h3>Regions on MLOps</h3><p>Platform adoption across 14 regions with sub-minute rollback, avoiding ~$100K in penalties.</p></article>
-      <article class="tile impact reveal"><div class="num">12</div><h3>Person AI team founded</h3><p>85% retention, 95%+ model accuracy.</p></article>
-      <article class="tile impact wide reveal"><div class="num">$200K</div><h3>Saved every year</h3><p>Operational toil reduced 25% through automation and SRE practices.</p></article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ EXPERIENCE ============ -->
-<section id="experience">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="label">Experience</span>
-      <h2>27 years of delivery</h2>
-      <p>From satellite networks to AI platforms — the constant is shipping reliable systems with distributed teams.</p>
-    </div>
-    <div class="timeline">
-      <article class="role reveal">
-        <div class="when"><strong>2022 – Now</strong><span>68 SREs · 17 locations</span></div>
-        <div class="tile role-card">
-          <h3>Senior Technical Program Manager</h3>
-          <p class="org">Huntington Ingalls Industries · Enterprise Infrastructure &amp; AI Platform</p>
-          <ul>
-            <li>Drove MLOps platform adoption across 14 global regions using the S.P.E.E.D. framework.</li>
-            <li>Coordinated 12,000+ engineering hours to accelerate model-to-production cycles.</li>
-            <li>Enabled sub-minute rollback, avoiding ~$100K in contractual penalties.</li>
-            <li>Abstracted infrastructure complexity so internal customers could self-serve AI capabilities.</li>
-          </ul>
-          <div class="tags"><span>MLOps</span><span>Computer Vision</span><span>NLP</span><span>CI/CD</span><span>Cloud</span></div>
+    <div class="card invoice" id="recruiters">
+      <div class="header"><h2>For Recruiters <small>The 30-second version</small></h2></div>
+      <div class="body">
+        <div class="inv-top">
+          <img src="/assets/img/sphere-lg.webp" alt="" width="64" height="43">
+          <div><strong>Manwell Clark</strong><br><small>Leander, TX · Remote US</small><br><small>(737) 766-7424</small></div>
         </div>
-      </article>
-      <article class="role reveal">
-        <div class="when"><strong>2021 – 2022</strong><span>68 SREs · 8 locations</span></div>
-        <div class="tile role-card">
-          <h3>Senior Program Manager</h3>
-          <p class="org">Envistacom (acquired by HII) · Security &amp; Infrastructure</p>
-          <ul>
-            <li>Built and led a fully distributed engineering team.</li>
-            <li>Commanded virtual war rooms for 360+ incidents; achieved 99.9% SLA compliance.</li>
-            <li>Reduced operational toil 25%, saving ~$200K per year.</li>
-          </ul>
-          <div class="tags"><span>SRE</span><span>Monitoring</span><span>Automation</span><span>Incident Response</span></div>
-        </div>
-      </article>
-      <article class="role reveal">
-        <div class="when"><strong>2019 – 2021</strong><span>96 SREs · 7 locations</span></div>
-        <div class="tile role-card">
-          <h3>Senior Technical Program Manager</h3>
-          <p class="org">Datapath (acquired by Envistacom) · Infrastructure Modernization</p>
-          <ul>
-            <li>Owned the full $36M P&amp;L for an enterprise infrastructure modernization.</li>
-            <li>Delivered a serial-to-IP transformation with 100% uptime and zero security incidents.</li>
-          </ul>
-          <div class="tags"><span>Modernization</span><span>P&amp;L Ownership</span><span>Secure Systems</span></div>
-        </div>
-      </article>
-      <article class="role reveal">
-        <div class="when"><strong>2012 – Now</strong><span>Veteran-owned studio</span></div>
-        <div class="tile role-card">
-          <h3>Founder &amp; Principal AI Consultant</h3>
-          <p class="org">Model-7 &amp; Clark &amp; Harper Visions · Remote</p>
-          <ul>
-            <li>Led the S.E.N.T.I.N.E.L S.Y.X AI platform: legacy PHP monolith to React + Node.js microservices with a custom 13B-parameter LLM.</li>
-            <li>10-week zero-downtime migration across 8 microservices with JWT auth, RBAC and HIPAA-aligned security.</li>
-            <li>Veteran case-management AI on 2.5TB of domain data: 95%+ accuracy, sub-2-second responses.</li>
-            <li>Built and mentored a 12-person distributed team; SLOs and Prometheus monitoring targeting 99.9% uptime.</li>
-          </ul>
-          <div class="tags"><span>LLMs</span><span>React</span><span>Node.js</span><span>Kubernetes</span><span>PostgreSQL</span></div>
-        </div>
-      </article>
-      <article class="role reveal">
-        <div class="when"><strong>2013 – 2019</strong><span>68 SREs · 7 locations</span></div>
-        <div class="tile role-card">
-          <h3>Senior Security Program Manager / SRE Manager</h3>
-          <p class="org">United States Air Force · Global Distributed Operations</p>
-          <ul>
-            <li>Stood up a distributed PMO across 7 European sites and built a 68-person SRE organization from scratch.</li>
-            <li>Implemented SLO/SLI frameworks achieving 99.2% reliability.</li>
-            <li>Cut manual audit overhead 35% by moving to digital workflows.</li>
-          </ul>
-          <div class="tags"><span>SRE</span><span>SLO/SLI</span><span>PMO</span><span>IaC</span></div>
-        </div>
-      </article>
-      <article class="role reveal">
-        <div class="when"><strong>1999 – 2013</strong><span>USAF</span></div>
-        <details class="tile role-card earlier">
-          <summary><h3>Technical Program Manager &amp; Systems Engineer</h3><span class="link-arrow">Show <i class="fa-solid fa-chevron-down"></i></span></summary>
-          <p class="org">United States Air Force · Platform Engineering (2010–2013) · Network Infrastructure (1999–2010)</p>
-          <ul>
-            <li>Delivered distributed systems and UAV sensor integrations with 99.9% availability across 5 global sites (700GB+ daily).</li>
-            <li>Drove a cloud-native transformation; deployment cycles from 24 months to 90 days.</li>
-            <li>Ran a 32-node fiber network and NOC for mission-critical satellite systems; executed 2,100+ technical audits.</li>
-          </ul>
-        </details>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ BUILDS ============ -->
-<section id="builds">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="label">Proof of work</span>
-      <h2>Things I've built</h2>
-      <p>Hands-on AI and platform work through Model-7, my veteran-owned AI studio. Code on <a href="https://github.com/modelcseven" target="_blank" rel="noopener">GitHub</a>.</p>
-    </div>
-    <div class="bento builds-bento">
-      <article class="tile build feature reveal">
-        <img class="feature-logo" src="/assets/img/sphere-lg.webp" alt="Clark &amp; Harper Visions logo" width="240" height="161" loading="lazy">
-        <span class="kicker">AI Platform</span>
-        <h3>S.E.N.T.I.N.E.L S.Y.X</h3>
-        <p>AI case-management platform that helps veterans navigate benefits — custom LLM, real-time AI chat, React + Node.js microservices on Kubernetes.</p>
-        <div class="meta"><span><i class="fa-solid fa-user-gear"></i> Program lead &amp; architect</span></div>
-        <div class="tags"><span>LLM</span><span>Kubernetes</span><span>RBAC</span><span>HIPAA</span></div>
-      </article>
-      <article class="tile build reveal">
-        <span class="kicker">Voice AI</span>
-        <h3>D.I.A.R.A.</h3>
-        <p>Voice AI virtual receptionist for small businesses — answers calls, qualifies leads, books appointments.</p>
-        <div class="tags"><span>Voice</span><span>LLM</span></div>
-      </article>
-      <article class="tile build reveal">
-        <span class="kicker">LLM Infrastructure</span>
-        <h3>Private LLM gateway</h3>
-        <p>Home-grown model behind an OpenAI-compatible API — no third-party data exposure.</p>
-        <div class="tags"><span>MLOps</span><span>Self-hosted</span></div>
-      </article>
-      <article class="tile build reveal">
-        <span class="kicker">Platform Engineering</span>
-        <h3>CHV Deploy</h3>
-        <p>Self-hosted deployment platform that ships sites and apps from GitHub. This website runs on it.</p>
-        <div class="tags"><span>Docker</span><span>GitOps</span></div>
-      </article>
-      <article class="tile build reveal">
-        <span class="kicker">ITSM</span>
-        <h3>SpeedX ITSM</h3>
-        <p>ITIL 4 service management — incident, change and request workflows for small IT teams.</p>
-        <div class="tags"><span>ITIL 4</span><span>Workflow</span></div>
-      </article>
-      <article class="tile build reveal">
-        <span class="kicker">SaaS</span>
-        <h3>KidsBookForge</h3>
-        <p>Subscription SaaS using generative AI to create and publish kids' activity books to Amazon KDP.</p>
-        <div class="tags"><span>GenAI</span><span>SaaS</span></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ S.P.E.E.D. + SKILLS ============ -->
-<section id="framework" class="speed-section">
-  <div class="section-bg" style="background-image:url(/assets/img/speed-tunnel.webp)" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="label">How I run programs</span>
-      <h2>The S.P.E.E.D. framework</h2>
-      <p>Minimal process, maximum clarity — the operating rhythm I bring to every program.</p>
-    </div>
-    <ol class="speed reveal">
-      <li><b>S</b><h3>Strategy</h3><p>Vision, success criteria and alignment before a line of code.</p></li>
-      <li><b>P</b><h3>Planning</h3><p>Milestones with clear owners and explicit risks.</p></li>
-      <li><b>E</b><h3>Execution</h3><p>Visible progress, fast escalation, no surprises.</p></li>
-      <li><b>E</b><h3>Evolution</h3><p>Adapt the plan as data and requirements change.</p></li>
-      <li><b>D</b><h3>Delivery</h3><p>Outcomes measured in business impact.</p></li>
-    </ol>
-    <div class="bento skills-bento">
-      <article class="tile reveal"><h3><i class="fa-solid fa-brain"></i> AI &amp; Machine Learning</h3><div class="tags"><span>LLMs</span><span>MLOps</span><span>NLP</span><span>Computer Vision</span><span>PyTorch</span><span>TensorFlow</span><span>Scikit-learn</span></div></article>
-      <article class="tile reveal"><h3><i class="fa-solid fa-cloud"></i> Cloud &amp; Infrastructure</h3><div class="tags"><span>AWS</span><span>Azure</span><span>GCP</span><span>Kubernetes</span><span>Docker</span><span>Terraform</span><span>Ansible</span><span>Prometheus</span></div></article>
-      <article class="tile reveal"><h3><i class="fa-solid fa-diagram-project"></i> Delivery &amp; Governance</h3><div class="tags"><span>Agile / Scrum</span><span>OKRs</span><span>Portfolio Mgmt</span><span>Zero Trust</span><span>Risk &amp; Audit</span><span>ITSM</span></div></article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CREDENTIALS ============ -->
-<section id="credentials">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="label">Credentials</span>
-      <h2>Zero ramp-up. Instant credibility.</h2>
-    </div>
-    <div class="badges reveal">
-      <div class="badge-card"><b>PMP</b><span>Project Management Professional</span></div>
-      <div class="badge-card"><b>CISM</b><span>Information Security Manager</span></div>
-      <div class="badge-card"><b>CISA</b><span>Information Systems Auditor</span></div>
-      <div class="badge-card"><b>PSM I</b><span>Professional Scrum Master</span></div>
-      <div class="badge-card"><b>CSSBB</b><span>Six Sigma Black Belt</span></div>
-      <div class="badge-card"><b>ITIL 4</b><span>IT Service Management</span></div>
-      <div class="badge-card"><b>MBA</b><span>IT Project Management · 2019</span></div>
-      <div class="badge-card gold"><b>TS/SCI</b><span>Active clearance</span></div>
-    </div>
-    <p class="muted small center reveal">Also: BA Psychology (2006) · AAS Electronic Systems Engineering (2005) · In progress: PMI-CPMAI (Managing AI)</p>
-  </div>
-</section>
-
-<!-- ============ CONTACT ============ -->
-<section class="contact" id="contact">
-  <div class="wrap">
-    <div class="tile contact-tile reveal">
-      <div class="tile-bg" style="background-image:url(/assets/img/lion-roar.webp)" aria-hidden="true"></div>
-      <span class="label">Let's build something reliable</span>
-      <h2>Need a TPM who can own it end to end?</h2>
-      <p>I'm looking for a remote Senior or Staff TPM role leading AI platform, cloud or security programs. If you have a program that has to land, let's talk.</p>
-      <div class="cta-row center">
-        <a class="btn btn-primary" href="mailto:manwell.clark@gmail.com?subject=Opportunity%20for%20Manwell%20Clark"><i class="fa-solid fa-envelope"></i> manwell.clark@gmail.com</a>
-        <a class="btn btn-ghost" href="tel:+17377667424"><i class="fa-solid fa-phone"></i> (737) 766-7424</a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/clarkharpervisions/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
-        <a class="btn btn-ghost" href="https://github.com/modelcseven" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+        <table class="table inv-table">
+          <tbody>
+            <tr><td>Target roles</td><td>Sr./Staff TPM · AI Program Lead · AI Architect</td></tr>
+            <tr><td>Domains</td><td>AI/ML · Cloud &amp; SRE · Security · Portfolio</td></tr>
+            <tr><td>Certifications</td><td>PMP · CISM · CISA · PSM I · CSSBB · ITIL 4</td></tr>
+            <tr><td>Education</td><td>MBA, IT Project Management</td></tr>
+            <tr><td>Clearance</td><td>Active TS/SCI</td></tr>
+            <tr><td>Status</td><td><span class="badge b-green">Available</span></td></tr>
+          </tbody>
+        </table>
+        <button class="btn btn-primary btn-block js-copy" data-copy="manwell.clark@gmail.com"><i class="fa-solid fa-copy"></i> Copy email</button>
       </div>
     </div>
   </div>
-</section>
-</main>
 
-<footer>
-  <div class="wrap">
+  <!-- footprint map + region list (Alpino map card) -->
+  <div class="card" id="footprint-card">
+    <div class="header"><h2>Global Footprint <small>Programs delivered across 17 locations in the US and Europe</small></h2></div>
+    <div class="body map-body">
+      <div id="footprint" role="img" aria-label="Map of regions in the United States and Europe where Manwell Clark has led programs"></div>
+      <ul class="region-list">
+        <li><span class="sw" style="--c:#f5c518"></span><span>United States</span><small>DC · VA · OK · CO · TX</small><b>5 regions</b></li>
+        <li><span class="sw" style="--c:#1e9ae8"></span><span>Germany</span><small>Distributed PMO &amp; SRE</small><b>HQ Europe</b></li>
+        <li><span class="sw" style="--c:#1e9ae8"></span><span>United Kingdom</span><small>Distributed PMO &amp; SRE</small><b>EU</b></li>
+        <li><span class="sw" style="--c:#1e9ae8"></span><span>Belgium</span><small>NATO partner coordination</small><b>EU</b></li>
+        <li><span class="sw" style="--c:#1e9ae8"></span><span>Netherlands</span><small>Distributed operations</small><b>EU</b></li>
+        <li><span class="sw" style="--c:#1e9ae8"></span><span>Italy</span><small>Distributed operations</small><b>EU</b></li>
+        <li><span class="sw" style="--c:#1e9ae8"></span><span>Turkey</span><small>Distributed operations</small><b>EU</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- why me (campaign performance style) + strengths -->
+  <div class="row r2" id="why">
+    <div class="card">
+      <div class="header"><h2>Why Hire Me <small>What you get on day one</small></h2></div>
+      <div class="body">
+        <ul class="why-list">
+          <li><i class="fa-solid fa-route c-blue"></i><div><strong>Ambiguity in, shipped roadmap out</strong><p>Decompose messy programs into milestones with clear owners; drive them with risk-first execution.</p><small><i class="fa-solid fa-circle-check"></i> $36M P&amp;L modernization; serial-to-IP cutover at 100% uptime.</small></div></li>
+          <li><i class="fa-solid fa-earth-americas c-green"></i><div><strong>Remote-first leadership that works</strong><p>A decade-plus leading distributed teams: influence without authority, written-first, calm incident command.</p><small><i class="fa-solid fa-circle-check"></i> 68-person SRE org across 7 European sites; ~90% virtual delivery.</small></div></li>
+          <li><i class="fa-solid fa-microchip c-violet"></i><div><strong>A TPM who builds AI</strong><p>Through Model-7 I architect and ship AI products — LLMs, voice AI, MLOps, self-hosted infrastructure.</p><small><i class="fa-solid fa-circle-check"></i> This site deploys from GitHub to a platform I run.</small></div></li>
+          <li><i class="fa-solid fa-lock c-amber"></i><div><strong>Security &amp; governance built in</strong><p>CISM and CISA certified, with Zero Trust and audit-readiness experience.</p><small><i class="fa-solid fa-circle-check"></i> Zero incidents through a classified migration; 35% less audit overhead.</small></div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="header"><h2>Core Competencies <small>Self-assessed against Sr./Staff TPM expectations</small></h2></div>
+      <div class="body">
+        <div class="progress-item"><div class="lbl"><span>Infrastructure Leadership</span><b>Expert</b></div><div class="progress"><span style="width:98%"></span></div><small>27 years · $287M portfolio · 68-person SRE org</small></div>
+        <div class="progress-item"><div class="lbl"><span>Reliability &amp; Scale</span><b>Expert</b></div><div class="progress"><span class="p-green" style="width:96%"></span></div><small>99.9% SLA · 360+ incidents · zero-downtime migrations</small></div>
+        <div class="progress-item"><div class="lbl"><span>AI/ML Platform Delivery</span><b>Advanced</b></div><div class="progress"><span class="p-violet" style="width:90%"></span></div><small>MLOps across 14 regions · 95%+ model accuracy</small></div>
+        <div class="progress-item"><div class="lbl"><span>Cross-Functional Leadership</span><b>Expert</b></div><div class="progress"><span class="p-amber" style="width:95%"></span></div><small>Distributed teams · 25+ PMOs · ~90% virtual delivery</small></div>
+        <div class="progress-item"><div class="lbl"><span>Security &amp; Governance</span><b>Advanced</b></div><div class="progress"><span class="p-red" style="width:90%"></span></div><small>CISM · CISA · Zero Trust · audit readiness</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- statement banner (lion eyes) -->
+  <div class="card statement">
+    <div class="body">
+      <div class="statement-bg" style="background-image:url(/assets/img/lion-eyes.webp)" aria-hidden="true"></div>
+      <div class="statement-text">
+        <small>PRAGMATIC FORCE MULTIPLIER</small>
+        <p>Influence without authority.<br><span class="hl">Distributed teams, delivered.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- impact (browser usage / site traffic style) -->
+  <div class="row r3" id="impact">
+    <div class="card impact-feature">
+      <div class="body">
+        <div class="impact-bg" style="background-image:url(/assets/img/lion-portrait.webp)" aria-hidden="true"></div>
+        <div class="impact-text"><h6>SLA Compliance</h6><h3>99.9%</h3><p>Virtual war-room command across 360+ incidents, backed by self-healing monitoring.</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="header"><h2>Results That Speak <small>Outcomes from programs I led</small></h2></div>
+      <div class="body">
+        <ul class="stat-list">
+          <li><span>Uptime through classified migration</span><b>100%</b></li>
+          <li><span>Months to deploy (was 24)</span><b>3</b></li>
+          <li><span>Regions on MLOps platform</span><b>14</b></li>
+          <li><span>AI team founded (85% retention)</span><b>12</b></li>
+          <li><span>Saved per year via automation</span><b>$200K</b></li>
+          <li><span>Penalties avoided via sub-minute rollback</span><b>~$100K</b></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card traffic">
+      <div class="header"><h2>Toil Reduction <small>Automation &amp; SRE practices</small></h2></div>
+      <div class="body">
+        <div class="donut" style="--p:25"><span>25%</span></div>
+        <p class="center">Operational toil cut by a quarter, saving <strong>$200K+</strong> a year.</p>
+        <div class="mini-stats"><div><b>35%</b><small>Less audit overhead</small></div><div><b>12,000+</b><small>Eng. hours coordinated</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- experience (application sales table style) -->
+  <div class="card" id="experience">
+    <div class="header"><h2>Experience <small>27 years of delivery · click a role for details</small></h2></div>
+    <div class="body table-responsive">
+      <table class="table exp-table">
+        <thead><tr><th>Role</th><th>Organization</th><th>Team</th><th>Years</th><th></th></tr></thead>
+        <tbody>
+          <tr class="exp-row" data-target="x1"><td><strong>Senior Technical Program Manager</strong><small>Enterprise Infrastructure &amp; AI Platform</small></td><td>Huntington Ingalls Industries</td><td><span class="badge b-blue">68 SREs · 17 loc.</span></td><td>2022 – Now</td><td><i class="fa-solid fa-chevron-down"></i></td></tr>
+          <tr class="exp-detail" id="x1" hidden><td colspan="5"><ul><li>Drove MLOps platform adoption across 14 global regions using the S.P.E.E.D. framework.</li><li>Coordinated 12,000+ engineering hours to accelerate model-to-production cycles.</li><li>Enabled sub-minute rollback, avoiding ~$100K in contractual penalties.</li><li>Abstracted infrastructure complexity so internal customers could self-serve AI capabilities.</li></ul><div class="tags"><span>MLOps</span><span>Computer Vision</span><span>NLP</span><span>CI/CD</span><span>Cloud</span></div></td></tr>
+
+          <tr class="exp-row" data-target="x2"><td><strong>Senior Program Manager</strong><small>Security &amp; Infrastructure</small></td><td>Envistacom (acquired by HII)</td><td><span class="badge b-blue">68 SREs · 8 loc.</span></td><td>2021 – 2022</td><td><i class="fa-solid fa-chevron-down"></i></td></tr>
+          <tr class="exp-detail" id="x2" hidden><td colspan="5"><ul><li>Built and led a fully distributed engineering team.</li><li>Commanded virtual war rooms for 360+ incidents; achieved 99.9% SLA compliance.</li><li>Reduced operational toil 25%, saving ~$200K per year.</li></ul><div class="tags"><span>SRE</span><span>Monitoring</span><span>Automation</span><span>Incident Response</span></div></td></tr>
+
+          <tr class="exp-row" data-target="x3"><td><strong>Senior Technical Program Manager</strong><small>Infrastructure Modernization</small></td><td>Datapath (acquired by Envistacom)</td><td><span class="badge b-blue">96 SREs · 7 loc.</span></td><td>2019 – 2021</td><td><i class="fa-solid fa-chevron-down"></i></td></tr>
+          <tr class="exp-detail" id="x3" hidden><td colspan="5"><ul><li>Owned the full $36M P&amp;L for an enterprise infrastructure modernization.</li><li>Delivered a serial-to-IP transformation with 100% uptime and zero security incidents.</li></ul><div class="tags"><span>Modernization</span><span>P&amp;L Ownership</span><span>Secure Systems</span></div></td></tr>
+
+          <tr class="exp-row" data-target="x4"><td><strong>Founder &amp; Principal AI Consultant</strong><small>Veteran-owned AI &amp; digital studio</small></td><td>Model-7 &amp; Clark &amp; Harper Visions</td><td><span class="badge b-amber">12-person team</span></td><td>2012 – Now</td><td><i class="fa-solid fa-chevron-down"></i></td></tr>
+          <tr class="exp-detail" id="x4" hidden><td colspan="5"><ul><li>Led the S.E.N.T.I.N.E.L S.Y.X AI platform: legacy PHP monolith to React + Node.js microservices with a custom 13B-parameter LLM.</li><li>10-week zero-downtime migration across 8 microservices with JWT auth, RBAC and HIPAA-aligned security.</li><li>Veteran case-management AI on 2.5TB of domain data: 95%+ accuracy, sub-2-second responses.</li><li>Built and mentored a 12-person distributed team; SLOs and Prometheus monitoring targeting 99.9% uptime.</li></ul><div class="tags"><span>LLMs</span><span>React</span><span>Node.js</span><span>Kubernetes</span><span>PostgreSQL</span></div></td></tr>
+
+          <tr class="exp-row" data-target="x5"><td><strong>Sr. Security Program Manager / SRE Manager</strong><small>Global Distributed Operations</small></td><td>United States Air Force</td><td><span class="badge b-blue">68 SREs · 7 loc.</span></td><td>2013 – 2019</td><td><i class="fa-solid fa-chevron-down"></i></td></tr>
+          <tr class="exp-detail" id="x5" hidden><td colspan="5"><ul><li>Stood up a distributed PMO across 7 European sites and built a 68-person SRE organization from scratch.</li><li>Implemented SLO/SLI frameworks achieving 99.2% reliability.</li><li>Cut manual audit overhead 35% by moving to digital workflows.</li></ul><div class="tags"><span>SRE</span><span>SLO/SLI</span><span>PMO</span><span>IaC</span></div></td></tr>
+
+          <tr class="exp-row" data-target="x6"><td><strong>Technical Program Manager &amp; Systems Engineer</strong><small>Platform Engineering · Network Infrastructure</small></td><td>United States Air Force</td><td><span class="badge b-gray">5 global sites</span></td><td>1999 – 2013</td><td><i class="fa-solid fa-chevron-down"></i></td></tr>
+          <tr class="exp-detail" id="x6" hidden><td colspan="5"><ul><li>Delivered distributed systems and UAV sensor integrations with 99.9% availability (700GB+ daily).</li><li>Drove a cloud-native transformation; deployment cycles from 24 months to 90 days.</li><li>Ran a 32-node fiber network and NOC for mission-critical satellite systems; executed 2,100+ technical audits.</li></ul></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- builds -->
+  <div class="block-title" id="builds"><h2>Things I've Built</h2><small>Hands-on AI and platform work through Model-7 · code on <a href="https://github.com/modelcseven" target="_blank" rel="noopener">GitHub</a></small></div>
+  <div class="row r3">
+    <div class="card build"><div class="body"><img class="build-logo" src="/assets/img/sphere.webp" alt="" width="48" height="32"><span class="badge b-blue">AI Platform</span><h4>S.E.N.T.I.N.E.L S.Y.X</h4><p>AI case-management platform that helps veterans navigate benefits — custom LLM, real-time AI chat, React + Node.js microservices on Kubernetes.</p><small><i class="fa-solid fa-user-gear"></i> Program lead &amp; architect</small></div></div>
+    <div class="card build"><div class="body"><img class="build-logo" src="/assets/img/sphere.webp" alt="" width="48" height="32"><span class="badge b-green">Voice AI</span><h4>D.I.A.R.A.</h4><p>Voice AI virtual receptionist for small businesses — answers calls, qualifies leads, books appointments.</p><small><i class="fa-solid fa-user-gear"></i> Product owner &amp; builder</small></div></div>
+    <div class="card build"><div class="body"><img class="build-logo" src="/assets/img/sphere.webp" alt="" width="48" height="32"><span class="badge b-violet">LLM Infrastructure</span><h4>Private LLM Gateway</h4><p>Home-grown language model behind an OpenAI-compatible API, powering Model-7's tools with no third-party data exposure.</p><small><i class="fa-solid fa-user-gear"></i> Architect</small></div></div>
+    <div class="card build"><div class="body"><img class="build-logo" src="/assets/img/sphere.webp" alt="" width="48" height="32"><span class="badge b-amber">Platform Engineering</span><h4>CHV Deploy</h4><p>Self-hosted deployment platform that ships sites and apps from GitHub. This website runs on it.</p><small><i class="fa-solid fa-user-gear"></i> Builder &amp; operator</small></div></div>
+    <div class="card build"><div class="body"><img class="build-logo" src="/assets/img/sphere.webp" alt="" width="48" height="32"><span class="badge b-red">ITSM</span><h4>SpeedX ITSM</h4><p>ITIL 4 service management — incident, change and request workflows for small IT teams.</p><small><i class="fa-solid fa-user-gear"></i> Product designer</small></div></div>
+    <div class="card build"><div class="body"><img class="build-logo" src="/assets/img/sphere.webp" alt="" width="48" height="32"><span class="badge b-gray">SaaS</span><h4>KidsBookForge</h4><p>Subscription SaaS using generative AI to create and publish kids' activity books to Amazon KDP.</p><small><i class="fa-solid fa-user-gear"></i> Founder &amp; product lead</small></div></div>
+  </div>
+
+  <!-- S.P.E.E.D. -->
+  <div class="card speed-card" id="framework">
+    <div class="body">
+      <div class="speed-bg" style="background-image:url(/assets/img/speed-tunnel.webp)" aria-hidden="true"></div>
+      <div class="speed-inner">
+        <h2>The S.P.E.E.D. Framework</h2>
+        <p>Minimal process, maximum clarity — the operating rhythm I bring to every program.</p>
+        <ol class="speed">
+          <li><b>S</b><strong>Strategy</strong><small>Vision, success criteria, alignment</small></li>
+          <li><b>P</b><strong>Planning</strong><small>Milestones, owners, explicit risks</small></li>
+          <li><b>E</b><strong>Execution</strong><small>Visible progress, fast escalation</small></li>
+          <li><b>E</b><strong>Evolution</strong><small>Adapt as data changes</small></li>
+          <li><b>D</b><strong>Delivery</strong><small>Measured business impact</small></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- skills + credentials (follow-us list style) -->
+  <div class="row r2" id="credentials">
+    <div class="card">
+      <div class="header"><h2>Credentials <small>Zero ramp-up. Instant credibility.</small></h2></div>
+      <div class="body">
+        <ul class="follow-list">
+          <li><span class="ava c-blue">PMP</span><div><strong>Project Management Professional</strong><small>Planning, risk, earned value</small></div></li>
+          <li><span class="ava c-red">CISM</span><div><strong>Certified Information Security Manager</strong><small>Security governance &amp; risk</small></div></li>
+          <li><span class="ava c-violet">CISA</span><div><strong>Certified Information Systems Auditor</strong><small>IT audit &amp; controls</small></div></li>
+          <li><span class="ava c-green">PSM</span><div><strong>Professional Scrum Master I</strong><small>Agile delivery</small></div></li>
+          <li><span class="ava c-amber">6σ</span><div><strong>Six Sigma Black Belt</strong><small>DMAIC process improvement</small></div></li>
+          <li><span class="ava c-blue">ITIL</span><div><strong>ITIL 4</strong><small>IT service management</small></div></li>
+          <li><span class="ava c-gray">MBA</span><div><strong>MBA, IT Project Management · 2019</strong><small>Also BA Psychology · AAS Electronic Systems Eng.</small></div></li>
+          <li><span class="ava c-gold">TS</span><div><strong>Active TS/SCI clearance</strong><small>In progress: PMI-CPMAI (Managing AI)</small></div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="header"><h2>Technical Oversight <small>Tools &amp; platforms I lead programs on</small></h2></div>
+      <div class="body skills">
+        <h6>AI &amp; Machine Learning</h6>
+        <div class="tags"><span>LLMs</span><span>MLOps</span><span>NLP</span><span>Computer Vision</span><span>PyTorch</span><span>TensorFlow</span><span>Scikit-learn</span></div>
+        <h6>Cloud &amp; Infrastructure</h6>
+        <div class="tags"><span>AWS</span><span>Azure</span><span>GCP</span><span>Kubernetes</span><span>Docker</span><span>Terraform</span><span>Ansible</span><span>Prometheus</span></div>
+        <h6>Delivery &amp; Governance</h6>
+        <div class="tags"><span>Agile / Scrum</span><span>OKRs</span><span>Portfolio Mgmt</span><span>Zero Trust</span><span>Risk &amp; Audit</span><span>ITSM</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- contact -->
+  <div class="card contact-card" id="contact">
+    <div class="body">
+      <div class="contact-bg" style="background-image:url(/assets/img/lion-roar.webp)" aria-hidden="true"></div>
+      <div class="contact-inner">
+        <small>LET'S BUILD SOMETHING RELIABLE</small>
+        <h2>Need a TPM who can own it end to end?</h2>
+        <p>I'm looking for a remote Senior or Staff TPM role leading AI platform, cloud or security programs. If you have a program that has to land, let's talk.</p>
+        <div class="btns">
+          <a class="btn btn-primary" href="mailto:manwell.clark@gmail.com?subject=Opportunity%20for%20Manwell%20Clark"><i class="fa-solid fa-envelope"></i> manwell.clark@gmail.com</a>
+          <a class="btn btn-light" href="tel:+17377667424"><i class="fa-solid fa-phone"></i> (737) 766-7424</a>
+          <a class="btn btn-light" href="https://www.linkedin.com/in/clarkharpervisions/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
     <span class="foot-brand"><img src="/assets/img/sphere.webp" alt="" width="28" height="19"> © <span id="yr">2026</span> Manwell Clark · Leander, TX · Veteran-owned Model-7 &amp; Clark &amp; Harper Visions</span>
     <span>Deployed from GitHub on CHV Deploy</span>
-  </div>
-</footer>
-
-<!-- mobile action bar -->
-<div class="mobile-bar" aria-label="Quick contact">
-  <a href="mailto:manwell.clark@gmail.com?subject=Opportunity%20for%20Manwell%20Clark"><i class="fa-solid fa-envelope"></i> Email</a>
-  <a href="tel:+17377667424"><i class="fa-solid fa-phone"></i> Call</a>
-  <a href="https://www.linkedin.com/in/clarkharpervisions/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
-</div>
+  </footer>
+</section>
 
 <div class="toast" role="status" aria-live="polite"></div>
 <script src="/assets/leaflet.js" defer></script>
-<script src="/assets/site.js?v=4" defer></script>
+<script src="/assets/site.js?v=6" defer></script>
 </body>
 </html>
