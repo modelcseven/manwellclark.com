@@ -273,3 +273,5 @@ footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .progress span { transition: none; } }
 .hero-card .body, .impact-feature .body { height: 100%; }
+.hero-bg { background-size: cover; background-position: 78% 40%; }
+@media (min-width: 1400px) { .hero-bg { background-size: auto 120%; background-position: 130% 42%; } }
