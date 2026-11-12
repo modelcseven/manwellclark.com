@@ -7,7 +7,8 @@
   <meta name="description" content="Manwell Clark — Senior Technical Program Manager with 27 years delivering AI/ML platforms, cloud infrastructure and security programs across distributed global teams. PMP, CISM, CISA. Open to remote Sr./Staff TPM and AI program leadership roles.">
   <link rel="canonical" href="https://manwellclark.com/">
   <meta name="theme-color" content="#07090d">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="preload" as="image" href="/assets/img/lion-profile.webp">
 
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Manwell Clark — Senior Technical Program Manager, AI &amp; Cloud">
@@ -22,7 +23,7 @@
   <link rel="stylesheet" href="/assets/fonts.css?v=3">
   <link rel="stylesheet" href="/assets/fontawesome.min.css">
   <link rel="stylesheet" href="/assets/leaflet.css">
-  <link rel="stylesheet" href="/assets/site.css?v=3">
+  <link rel="stylesheet" href="/assets/site.css?v=5">
 
   <script type="application/ld+json">
   {
@@ -47,7 +48,7 @@
 
 <!-- ============ FLOATING NAV ============ -->
 <header class="nav">
-  <a class="nav-brand" href="#top" aria-label="Manwell Clark — home"><span class="mark">MC</span><span class="nav-name">Manwell Clark</span></a>
+  <a class="nav-brand" href="#top" aria-label="Manwell Clark — home"><img class="nav-logo" src="/assets/img/sphere.webp" alt="" width="40" height="27"><span class="nav-name">Manwell Clark</span></a>
   <nav aria-label="Sections">
     <ul class="nav-links" id="navlinks">
       <li><a href="#why">Why me</a></li>
@@ -68,6 +69,7 @@
   <div class="wrap bento hero-bento">
 
     <article class="tile t-intro reveal">
+      <div class="tile-bg" style="background-image:url(/assets/img/lion-profile.webp)" aria-hidden="true"></div>
       <span class="status-pill"><span class="pulse"></span> Open to remote Sr./Staff TPM roles</span>
       <h1>I turn complex AI &amp; infrastructure programs into <span class="grad">shipped, reliable outcomes.</span></h1>
       <p class="lede">Senior Technical Program Manager with <strong>27 years</strong> leading AI/ML platforms, cloud modernization and Zero Trust programs across distributed teams in the US and Europe. I also build — I architect and ship my own AI products, so I speak engineering fluently.</p>
@@ -79,6 +81,7 @@
     </article>
 
     <article class="tile t-profile reveal">
+      <div class="profile-banner" style="background-image:url(/assets/img/austin-night.webp)" aria-hidden="true"></div>
       <div class="avatar-ring"><span class="avatar">MC</span></div>
       <h2>Manwell Clark</h2>
       <p class="muted">Senior Technical Program Manager</p>
@@ -170,6 +173,15 @@
   </div>
 </section>
 
+<!-- ============ STATEMENT BAND ============ -->
+<section class="statement" aria-label="Philosophy">
+  <div class="statement-bg" style="background-image:url(/assets/img/lion-eyes.webp)" aria-hidden="true"></div>
+  <div class="wrap statement-inner reveal">
+    <span class="label">Pragmatic force multiplier</span>
+    <p class="quote">Influence without authority.<br><span class="grad">Distributed teams, delivered.</span></p>
+  </div>
+</section>
+
 <!-- ============ IMPACT ============ -->
 <section id="impact">
   <div class="wrap">
@@ -179,7 +191,7 @@
       <p>Outcomes from programs I led — reliability, scale, team building and cost.</p>
     </div>
     <div class="bento impact-bento">
-      <article class="tile impact big reveal"><div class="num">99.9%</div><h3>SLA compliance</h3><p>Virtual war-room command across 360+ incidents, backed by self-healing monitoring.</p></article>
+      <article class="tile impact big reveal"><div class="tile-bg right" style="background-image:url(/assets/img/lion-portrait.webp)" aria-hidden="true"></div><div class="num">99.9%</div><h3>SLA compliance</h3><p>Virtual war-room command across 360+ incidents, backed by self-healing monitoring.</p></article>
       <article class="tile impact reveal"><div class="num">100%</div><h3>Uptime through migration</h3><p>Zero downtime during critical modernization in classified environments.</p></article>
       <article class="tile impact reveal"><div class="num">24→3</div><h3>Months to deploy</h3><p>Deployment cycles cut from 24 months to 90 days with a cloud-native transformation.</p></article>
       <article class="tile impact reveal"><div class="num">14</div><h3>Regions on MLOps</h3><p>Platform adoption across 14 regions with sub-minute rollback, avoiding ~$100K in penalties.</p></article>
@@ -290,6 +302,7 @@
     </div>
     <div class="bento builds-bento">
       <article class="tile build feature reveal">
+        <img class="feature-logo" src="/assets/img/sphere-lg.webp" alt="Clark &amp; Harper Visions logo" width="240" height="161" loading="lazy">
         <span class="kicker">AI Platform</span>
         <h3>S.E.N.T.I.N.E.L S.Y.X</h3>
         <p>AI case-management platform that helps veterans navigate benefits — custom LLM, real-time AI chat, React + Node.js microservices on Kubernetes.</p>
@@ -331,7 +344,8 @@
 </section>
 
 <!-- ============ S.P.E.E.D. + SKILLS ============ -->
-<section id="framework">
+<section id="framework" class="speed-section">
+  <div class="section-bg" style="background-image:url(/assets/img/speed-tunnel.webp)" aria-hidden="true"></div>
   <div class="wrap">
     <div class="section-head reveal">
       <span class="label">How I run programs</span>
@@ -378,6 +392,7 @@
 <section class="contact" id="contact">
   <div class="wrap">
     <div class="tile contact-tile reveal">
+      <div class="tile-bg" style="background-image:url(/assets/img/lion-roar.webp)" aria-hidden="true"></div>
       <span class="label">Let's build something reliable</span>
       <h2>Need a TPM who can own it end to end?</h2>
       <p>I'm looking for a remote Senior or Staff TPM role leading AI platform, cloud or security programs. If you have a program that has to land, let's talk.</p>
@@ -394,7 +409,7 @@
 
 <footer>
   <div class="wrap">
-    <span>© <span id="yr">2026</span> Manwell Clark · Leander, TX · Veteran-owned Model-7 &amp; Clark &amp; Harper Visions</span>
+    <span class="foot-brand"><img src="/assets/img/sphere.webp" alt="" width="28" height="19"> © <span id="yr">2026</span> Manwell Clark · Leander, TX · Veteran-owned Model-7 &amp; Clark &amp; Harper Visions</span>
     <span>Deployed from GitHub on CHV Deploy</span>
   </div>
 </footer>
@@ -408,6 +423,6 @@
 
 <div class="toast" role="status" aria-live="polite"></div>
 <script src="/assets/leaflet.js" defer></script>
-<script src="/assets/site.js?v=3" defer></script>
+<script src="/assets/site.js?v=4" defer></script>
 </body>
 </html>
