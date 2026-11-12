@@ -1,134 +1,105 @@
 (function () {
-  var yr = document.getElementById('yr');
-  if (yr) yr.textContent = new Date().getFullYear();
+  var root = document.documentElement;
+  var yr = document.getElementById('yr'); if (yr) yr.textContent = new Date().getFullYear();
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Mobile menu
-  var toggle = document.querySelector('.nav-toggle');
-  var menu = document.querySelector('.nav nav');
-  if (toggle && menu) {
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    menu.addEventListener('click', function (e) { if (e.target.closest('a')) { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); } });
-  }
+  // Theme toggle (light = Alpino default)
+  var tbtn = document.querySelector('.theme-toggle');
+  function paintIcon() { if (tbtn) tbtn.innerHTML = root.getAttribute('data-theme') === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>'; }
+  paintIcon();
+  if (tbtn) tbtn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next); paintIcon();
+    try { localStorage.setItem('mc-theme', next); } catch (e) {}
+  });
 
-  // Active nav link follows the section in view
-  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  // Sidebar toggle (tablet / phone)
+  var sidebar = document.getElementById('sidebar'), overlay = document.querySelector('.overlay'), mt = document.querySelector('.menu-toggle');
+  function setOpen(o) { sidebar.classList.toggle('open', o); overlay.hidden = !o; if (mt) mt.setAttribute('aria-expanded', o ? 'true' : 'false'); }
+  if (mt) mt.addEventListener('click', function () { setOpen(!sidebar.classList.contains('open')); });
+  overlay.addEventListener('click', function () { setOpen(false); });
+  sidebar.addEventListener('click', function (e) { if (e.target.closest('a') && window.innerWidth <= 992) setOpen(false); });
+
+  // Active menu follows the section in view
+  var links = Array.prototype.slice.call(document.querySelectorAll('#navlinks a[href^="#"], .mini-icons a'));
   if ('IntersectionObserver' in window) {
-    var spy = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
+    var spy = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
         if (!en.isIntersecting) return;
         links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id); });
       });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    links.forEach(function (a) { var s = document.querySelector(a.getAttribute('href')); if (s) spy.observe(s); });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    ['top', 'why', 'impact', 'experience', 'builds', 'framework', 'credentials', 'contact'].forEach(function (id) { var s = document.getElementById(id); if (s) spy.observe(s); });
   }
 
-  // Reveal on scroll (staggered within a grid)
-  var els = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window && !reduce) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        var sibs = Array.prototype.indexOf.call(en.target.parentNode.children, en.target);
-        en.target.style.transitionDelay = Math.min(sibs, 6) * 60 + 'ms';
-        en.target.classList.add('in'); io.unobserve(en.target);
-      });
-    }, { threshold: 0.12 });
-    els.forEach(function (el) { io.observe(el); });
-  } else {
-    els.forEach(function (el) { el.classList.add('in'); });
-  }
-
-  // Cursor spotlight on tiles
-  document.addEventListener('pointermove', function (e) {
-    var t = e.target.closest && e.target.closest('.tile');
-    if (!t) return;
-    var r = t.getBoundingClientRect();
-    t.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-    t.style.setProperty('--my', (e.clientY - r.top) + 'px');
-  }, { passive: true });
-
-  // Count-up stats
+  // Count-up + progress bars when visible
   function countUp(el) {
-    var end = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
-    var pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+    var end = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
     if (reduce) return;
-    var start = null, dur = 1400;
-    function step(ts) {
-      if (!start) start = ts;
-      var p = Math.min(1, (ts - start) / dur), v = end * (1 - Math.pow(1 - p, 3));
-      el.textContent = pre + v.toFixed(dec) + suf;
-      if (p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
+    var t0 = null;
+    (function step(ts) { if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / 1300); el.textContent = pre + (end * (1 - Math.pow(1 - p, 3))).toFixed(dec) + suf; if (p < 1) requestAnimationFrame(step); })(performance.now());
   }
-  var nums = document.querySelectorAll('[data-count]');
+  var bars = document.querySelectorAll('.progress span');
+  bars.forEach(function (b) { b.dataset.w = b.style.width; if (!reduce) b.style.width = '0'; });
   if ('IntersectionObserver' in window) {
-    var cio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { countUp(en.target); cio.unobserve(en.target); } });
-    }, { threshold: 0.6 });
-    nums.forEach(function (n) { cio.observe(n); });
-  }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        if (en.target.dataset.count) countUp(en.target); else en.target.style.width = en.target.dataset.w;
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('[data-count]').forEach(function (n) { io.observe(n); });
+    bars.forEach(function (b) { io.observe(b); });
+  } else bars.forEach(function (b) { b.style.width = b.dataset.w; });
+
+  // Experience rows expand
+  document.querySelectorAll('.exp-row').forEach(function (r) {
+    r.setAttribute('tabindex', '0');
+    function toggle() { var d = document.getElementById(r.dataset.target); d.hidden = !d.hidden; r.classList.toggle('open', !d.hidden); }
+    r.addEventListener('click', toggle);
+    r.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+  });
 
   // Toast + copy email
   var toast = document.querySelector('.toast');
-  function say(msg) {
-    if (!toast) return;
-    toast.textContent = msg; toast.classList.add('show');
-    setTimeout(function () { toast.classList.remove('show'); }, 2200);
-  }
+  function say(m) { toast.textContent = m; toast.classList.add('show'); setTimeout(function () { toast.classList.remove('show'); }, 2200); }
   document.querySelectorAll('.js-copy').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var v = b.getAttribute('data-copy');
-      if (navigator.clipboard) navigator.clipboard.writeText(v).then(function () { say('Email copied: ' + v); }, function () { say(v); });
-      else say(v);
-    });
+    b.addEventListener('click', function () { var v = b.dataset.copy; if (navigator.clipboard) navigator.clipboard.writeText(v).then(function () { say('Email copied: ' + v); }, function () { say(v); }); else say(v); });
   });
 
-  // Hide résumé buttons until the PDF is published
-  var resumeBtns = document.querySelectorAll('.js-resume');
-  if (resumeBtns.length) {
-    resumeBtns.forEach(function (b) { b.style.display = 'none'; });
-    fetch(resumeBtns[0].getAttribute('href'), { method: 'HEAD' }).then(function (r) {
-      var ok = r.ok && (r.headers.get('content-type') || '').indexOf('pdf') !== -1;
-      if (ok) resumeBtns.forEach(function (b) { b.style.display = ''; });
-    }).catch(function () {});
+  // Résumé buttons hidden until the PDF exists
+  var rb = document.querySelectorAll('.js-resume');
+  if (rb.length) {
+    rb.forEach(function (b) { b.style.display = 'none'; });
+    fetch(rb[0].getAttribute('href'), { method: 'HEAD' }).then(function (r) { if (r.ok && (r.headers.get('content-type') || '').indexOf('pdf') !== -1) rb.forEach(function (b) { b.style.display = ''; }); }).catch(function () {});
   }
 
-  // Footprint map — regional pins only
+  // Footprint map
+  var tiles = null, map = null;
+  function tileUrl() { return root.getAttribute('data-theme') === 'dark'
+    ? 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}'
+    : 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'; }
   function initMap() {
-    var el = document.getElementById('footprint');
-    if (!el || !window.L) return;
-    var map = L.map(el, { scrollWheelZoom: false, zoomControl: false, attributionControl: true, worldCopyJump: true, dragging: !L.Browser.mobile });
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom: 10, attribution: 'Tiles &copy; Esri'
-    }).addTo(map);
+    var el = document.getElementById('footprint'); if (!el || !window.L) return;
+    map = L.map(el, { scrollWheelZoom: false, worldCopyJump: true, dragging: !L.Browser.mobile });
+    tiles = L.tileLayer(tileUrl(), { maxZoom: 10, attribution: 'Tiles &copy; Esri' }).addTo(map);
     var sites = [
-      { n: 'Washington, DC region', d: 'Program leadership', ll: [38.9, -77.04], g: 'us' },
-      { n: 'Hampton Roads, VA', d: 'Platform engineering', ll: [37.08, -76.36], g: 'us' },
-      { n: 'Oklahoma', d: 'Network infrastructure', ll: [35.47, -97.52], g: 'us' },
-      { n: 'Colorado Springs, CO', d: 'Distributed operations', ll: [38.83, -104.82], g: 'us' },
-      { n: 'Austin, TX', d: 'Home base · Remote', ll: [30.58, -97.85], g: 'us' },
-      { n: 'Rhineland-Palatinate, Germany', d: 'Distributed PMO & SRE', ll: [49.9, 7.0], g: 'eu' },
-      { n: 'East Anglia, UK', d: 'Distributed PMO & SRE', ll: [52.4, 0.56], g: 'eu' },
-      { n: 'Brussels, Belgium', d: 'NATO partner coordination', ll: [50.85, 4.35], g: 'eu' },
-      { n: 'Netherlands', d: 'Distributed operations', ll: [51.65, 5.66], g: 'eu' },
-      { n: 'Northern Italy', d: 'Distributed operations', ll: [45.43, 10.28], g: 'eu' },
-      { n: 'Southern Turkey', d: 'Distributed operations', ll: [37.0, 35.42], g: 'eu' }
-    ];
-    var pts = [];
+      ['Washington, DC region', 'Program leadership', [38.9, -77.04], 'us'], ['Hampton Roads, VA', 'Platform engineering', [37.08, -76.36], 'us'],
+      ['Oklahoma', 'Network infrastructure', [35.47, -97.52], 'us'], ['Colorado Springs, CO', 'Distributed operations', [38.83, -104.82], 'us'],
+      ['Austin, TX', 'Home base · Remote', [30.58, -97.85], 'us'], ['Rhineland-Palatinate, Germany', 'Distributed PMO & SRE', [49.9, 7.0], 'eu'],
+      ['East Anglia, UK', 'Distributed PMO & SRE', [52.4, 0.56], 'eu'], ['Brussels, Belgium', 'NATO partner coordination', [50.85, 4.35], 'eu'],
+      ['Netherlands', 'Distributed operations', [51.65, 5.66], 'eu'], ['Northern Italy', 'Distributed operations', [45.43, 10.28], 'eu'],
+      ['Southern Turkey', 'Distributed operations', [37.0, 35.42], 'eu']
+    ], pts = [];
     sites.forEach(function (s) {
-      var c = s.g === 'us' ? '#f5c518' : '#5cc8f5';
-      L.circleMarker(s.ll, { radius: 11, color: c, weight: 1, opacity: .3, fillOpacity: .1 }).addTo(map);
-      L.circleMarker(s.ll, { radius: 5, color: c, weight: 2, fillColor: c, fillOpacity: .95 })
-        .bindPopup('<strong>' + s.n + '</strong><br><span style="color:#7d8796">' + s.d + '</span>').addTo(map);
-      pts.push(s.ll);
+      var c = s[3] === 'us' ? '#f5c518' : '#1e9ae8';
+      L.circleMarker(s[2], { radius: 11, color: c, weight: 1, opacity: .35, fillOpacity: .12 }).addTo(map);
+      L.circleMarker(s[2], { radius: 5, color: '#fff', weight: 2, fillColor: c, fillOpacity: 1 }).bindPopup('<strong>' + s[0] + '</strong><br>' + s[1]).addTo(map);
+      pts.push(s[2]);
     });
     map.fitBounds(pts, { padding: [24, 24] });
+    if (tbtn) tbtn.addEventListener('click', function () { tiles.setUrl(tileUrl()); });
   }
-  if (document.readyState === 'complete') initMap();
-  else window.addEventListener('load', initMap);
+  if (document.readyState === 'complete') initMap(); else window.addEventListener('load', initMap);
 })();
