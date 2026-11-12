@@ -6,9 +6,10 @@
   <meta name="robots" content="noindex, nofollow">
   <title>Playbook · Manwell Clark</title>
   <meta name="theme-color" content="#0b0d12">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://manwellclark.com/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <script>try{var t=localStorage.getItem('pb-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/app.css">
 </head>
@@ -17,11 +18,17 @@
 <!-- Login -->
 <div id="login" class="login" hidden>
   <form class="card login-card" id="loginForm">
-    <span class="logo-mark">MC</span>
+    <img class="login-logo" src="https://manwellclark.com/assets/img/sphere.webp" alt="" width="72" height="48">
     <h1>Playbook</h1>
     <p class="muted">Private job-search command center</p>
-    <label for="pw">Password</label>
+    <div id="setupFields" hidden>
+      <p class="setup-note">First time here: enter the setup code from this app's Coolify logs, then choose your password.</p>
+      <label for="code">Setup code</label>
+      <input id="code" autocomplete="one-time-code">
+    </div>
+    <label for="pw" id="pwLabel">Password</label>
     <input id="pw" type="password" autocomplete="current-password" required>
+    <div id="pw2Wrap" hidden><label for="pw2">Confirm password</label><input id="pw2" type="password" autocomplete="new-password"></div>
     <p class="error" id="loginErr" role="alert"></p>
     <button class="btn btn-primary btn-block" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Sign in</button>
   </form>
@@ -31,12 +38,13 @@
 <div id="app" hidden>
   <aside class="sidebar" id="sidebar">
     <a class="brand" href="#dashboard">
-      <span class="logo-mark">MC</span>
+      <img class="brand-logo" src="https://manwellclark.com/assets/img/sphere.webp" alt="" width="40" height="27">
       <span class="brand-text"><strong>Playbook</strong><small>Remote job command center</small></span>
     </a>
     <p class="nav-label">Track</p>
     <ul class="side-nav" id="nav">
       <li><a href="#dashboard" data-view="dashboard"><i class="fa-solid fa-gauge-high"></i> Dashboard</a></li>
+      <li><a href="#jobs" data-view="jobs"><i class="fa-solid fa-magnifying-glass"></i> Find jobs <span class="pill" id="jobsPill"></span></a></li>
       <li><a href="#today" data-view="today"><i class="fa-solid fa-sun"></i> Today <span class="pill" id="todayPill"></span></a></li>
       <li><a href="#applications" data-view="applications"><i class="fa-solid fa-file-signature"></i> Applications</a></li>
       <li><a href="#outreach" data-view="outreach"><i class="fa-solid fa-paper-plane"></i> Outreach</a></li>
@@ -50,7 +58,7 @@
     </ul>
     <div class="side-card">
       <span class="status" id="saveStatus"><span class="dot"></span> Saved</span>
-      <p><a href="https://manwellclark.com" target="_blank" rel="noopener">manwellclark.com</a> · <a href="#" id="exportBtn">Export</a> · <a href="#" id="logoutBtn">Sign out</a></p>
+      <p><a href="https://manwellclark.com" target="_blank" rel="noopener">manwellclark.com</a> · <a href="#" id="exportBtn">Export</a> · <a href="#" id="themeBtn">Theme</a> · <a href="#" id="logoutBtn">Sign out</a></p>
     </div>
   </aside>
   <div class="scrim" hidden></div>

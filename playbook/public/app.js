@@ -134,8 +134,8 @@
   }
 
   // ---------- routing ----------
-  const VIEWS = { dashboard: viewDashboard, today: viewToday, applications: viewApplications, outreach: viewOutreach, targets: viewTargets, metrics: viewMetrics, plan: viewPlan, roles: viewRoles };
-  const TITLES = { dashboard: 'Dashboard', today: 'Today', applications: 'Applications', outreach: 'Outreach', targets: 'Target companies', metrics: 'Weekly metrics', plan: '30-day plan', roles: 'Roles & scripts' };
+  const VIEWS = { dashboard: viewDashboard, jobs: viewJobs, today: viewToday, applications: viewApplications, outreach: viewOutreach, targets: viewTargets, metrics: viewMetrics, plan: viewPlan, roles: viewRoles };
+  const TITLES = { dashboard: 'Dashboard', jobs: 'Find jobs', today: 'Today', applications: 'Applications', outreach: 'Outreach', targets: 'Target companies', metrics: 'Weekly metrics', plan: '30-day plan', roles: 'Roles & scripts' };
   function current() { const h = location.hash.slice(1); return VIEWS[h] ? h : 'dashboard'; }
   function render() {
     const v = current();
@@ -145,6 +145,7 @@
     bindView(v);
     const d = todayProgress();
     const pill = $('#todayPill'); pill.textContent = d.done + '/' + d.total; pill.classList.toggle('done', d.done === d.total);
+    const jp = $('#jobsPill'); const open = openLeads().length; jp.textContent = open || ''; jp.hidden = !open;
   }
   window.addEventListener('hashchange', () => { render(); closeSidebar(); window.scrollTo(0, 0); });
 
@@ -186,6 +187,56 @@
     </div>
     <div class="card" style="margin-top:16px"><div class="card-head"><div><h2>30-day plan</h2><p>${planDone} of ${planAll.length} setup tasks done</p></div><a href="#plan" class="btn btn-ghost btn-sm">Open</a></div>
       <div class="bar ${planDone === planAll.length ? 'good' : ''}"><span style="width:${pct(planDone, planAll.length)}%"></span></div></div>`;
+  }
+
+  // ---------- Find jobs ----------
+  const BOARDS = [
+    ['LinkedIn', q => 'https://www.linkedin.com/jobs/search/?keywords=' + encodeURIComponent(q) + '&location=United%20States&f_WT=2&f_E=4%2C5'],
+    ['Indeed', q => 'https://www.indeed.com/jobs?q=' + encodeURIComponent(q) + '&l=Remote'],
+    ['ZipRecruiter', q => 'https://www.ziprecruiter.com/jobs-search?search=' + encodeURIComponent(q) + '&location=United+States&refine_by_location_type=only_remote'],
+    ['OpenJobs', q => 'https://openjobshq.com/?q=' + encodeURIComponent(q)]
+  ];
+  const SEARCHES = [
+    ['Technical Program Management', 'Senior Technical Program Manager', 'fa-diagram-project'],
+    ['IT portfolio', 'IT Portfolio Manager', 'fa-layer-group'],
+    ['AI programs', 'AI Program Manager', 'fa-microchip'],
+    ['AI architecture', 'AI Architect', 'fa-brain'],
+    ['Project management', 'Senior IT Project Manager', 'fa-list-check']
+  ];
+  let SEED = [];
+  function allLeads() {
+    const st = S.leads || [], seen = new Set(st.map(l => l.id));
+    return st.concat(SEED.filter(l => !seen.has(l.id)).map(l => Object.assign({}, l)));
+  }
+  function leadState(l) { S.leadFlags = S.leadFlags || {}; return S.leadFlags[l.id] || {}; }
+  function openLeads() { return allLeads().filter(l => { const f = leadState(l); return !f.tracked && !f.dismissed && !l.tracked && !l.dismissed; }); }
+  function viewJobs() {
+    const f = state_ui.leadF || '';
+    const leads = openLeads().filter(l => !f || l.family === f).sort((a, b) => (b.fit || 0) - (a.fit || 0) || (b.posted || '').localeCompare(a.posted || ''));
+    const fams = Array.from(new Set(allLeads().map(l => l.family).filter(Boolean)));
+    return `
+    <div class="page-head"><div><h1>Find jobs</h1><p>Remote US · private sector · senior roles. Leads come from Claude's searches and, once set up, your n8n automation.</p></div></div>
+    <div class="grid g3">${SEARCHES.map(([fam, q, ic]) => `<div class="card search-card"><div class="card-head"><div><h2><i class="fa-solid ${ic}"></i> ${esc(q)}</h2><p>${esc(fam)}</p></div></div>
+      <div class="board-links">${BOARDS.map(([b, u]) => `<a class="btn btn-ghost btn-sm" href="${u(q)}" target="_blank" rel="noopener">${b} <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`).join('')}</div></div>`).join('')}
+      <div class="card search-card"><div class="card-head"><div><h2><i class="fa-solid fa-link"></i> Track a job by link</h2><p>Paste any posting URL</p></div></div>
+        <button class="btn btn-primary btn-sm" data-add="applications"><i class="fa-solid fa-plus"></i> Add application</button></div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="card-head"><div><h2>Fresh leads <span class="badge b-blue">${leads.length}</span></h2><p>Track a lead to move it into Applications as “Saved”. Dismiss what doesn't fit.</p></div>
+        <select id="leadF" style="width:auto"><option value="">All roles</option>${fams.map(x => `<option ${x === f ? 'selected' : ''}>${esc(x)}</option>`).join('')}</select></div>
+      ${leads.length ? `<div class="table-wrap" style="box-shadow:none"><table><thead><tr><th>Role</th><th>Company</th><th>Pay</th><th>Posted</th><th>Source</th><th></th></tr></thead><tbody>
+      ${leads.map(l => `<tr style="cursor:default"><td><a href="${esc(l.url)}" target="_blank" rel="noopener"><strong>${esc(l.title)}</strong></a>${l.fit ? ` <span class="badge ${l.fit >= 75 ? 'b-green' : l.fit >= 55 ? 'b-amber' : 'b-gray'}">${l.fit}% fit</span>` : ''}<br><small class="muted">${esc(l.family || '')}${l.why ? ' · ' + esc(l.why) : ''}</small></td>
+        <td>${esc(l.company)}</td><td>${esc(l.salary || '—')}</td><td>${fmt(l.posted)}</td><td class="muted">${esc(l.source || '')}</td>
+        <td style="white-space:nowrap"><button class="btn btn-primary btn-sm" data-track="${esc(l.id)}"><i class="fa-solid fa-bookmark"></i> Track</button> <button class="icon-btn" data-dismiss="${esc(l.id)}" aria-label="Dismiss"><i class="fa-solid fa-xmark"></i></button></td></tr>`).join('')}
+      </tbody></table></div>` : '<p class="muted">No open leads. Run a search above, or ask Claude for a fresh batch.</p>'}
+    </div>`;
+  }
+  const FAMILY_MAP = { 'Technical Program Management': 'Technical Program Management', 'IT portfolio': 'IT portfolio', 'AI programs': 'AI programs', 'AI architecture': 'AI architecture', 'Project management': 'Technical Program Management' };
+  function trackLead(id) {
+    const l = allLeads().find(x => x.id === id); if (!l) return;
+    S.applications.push({ id: uid(), company: l.company, role: l.title, family: FAMILY_MAP[l.family] || FAMILIES[0], url: l.url, status: 'Saved', applied: '', interview: '', next: 'Tailor résumé and apply', nextDate: today(), contact: '', notes: [l.salary, l.source].filter(Boolean).join(' · ') });
+    if (l.company && !S.targets.some(t => t.name.toLowerCase() === l.company.toLowerCase())) S.targets.push({ id: uid(), name: l.company, market: MARKETS[0], priority: 'Normal', careers: '', notes: 'Added from a lead — set the market' });
+    S.leadFlags = S.leadFlags || {}; S.leadFlags[id] = { tracked: true }; save(); render(); toast('Tracked — it\'s in Applications');
   }
 
   function counterRow(key, label, sub, value, goal, manual) {
@@ -301,6 +352,9 @@
     $$('#view [data-copy]').forEach(b => b.addEventListener('click', () => { navigator.clipboard && navigator.clipboard.writeText(SCRIPTS[b.dataset.copy].text); toast('Copied — fill in the {braces}'); }));
     const q = $('#appQ'); if (q) q.addEventListener('input', () => { state_ui.appQ = q.value; const pos = q.selectionStart; render(); const nq = $('#appQ'); nq.focus(); nq.setSelectionRange(pos, pos); });
     const f = $('#appF'); if (f) f.addEventListener('change', () => { state_ui.appF = f.value; render(); });
+    const lf = $('#leadF'); if (lf) lf.addEventListener('change', () => { state_ui.leadF = lf.value; render(); });
+    $$('#view [data-track]').forEach(b => b.addEventListener('click', () => trackLead(b.dataset.track)));
+    $$('#view [data-dismiss]').forEach(b => b.addEventListener('click', () => { S.leadFlags = S.leadFlags || {}; S.leadFlags[b.dataset.dismiss] = { dismissed: true }; save(); render(); }));
   }
 
   // ---------- forms ----------
@@ -381,13 +435,24 @@
   $('#logoutBtn').addEventListener('click', async e => { e.preventDefault(); await flush(); await api('/api/logout', { method: 'POST' }); location.reload(); });
 
   // ---------- boot ----------
-  function showLogin() { $('#app').hidden = true; $('#login').hidden = false; $('#pw').focus(); }
+  let setupMode = false;
+  function showLogin(needsSetup) {
+    setupMode = !!needsSetup;
+    $('#setupFields').hidden = !setupMode; $('#pw2Wrap').hidden = !setupMode;
+    $('#pwLabel').textContent = setupMode ? 'Choose a password (10+ characters)' : 'Password';
+    $('#pw').setAttribute('autocomplete', setupMode ? 'new-password' : 'current-password');
+    $('#loginForm button[type=submit]').innerHTML = setupMode ? '<i class="fa-solid fa-lock"></i> Set password & enter' : '<i class="fa-solid fa-right-to-bracket"></i> Sign in';
+    $('#app').hidden = true; $('#login').hidden = false; (setupMode ? $('#code') : $('#pw')).focus();
+  }
+  $('#themeBtn').addEventListener('click', e => { e.preventDefault(); const r = document.documentElement; const n = r.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; r.setAttribute('data-theme', n); try { localStorage.setItem('pb-theme', n); } catch (er) {} });
   async function boot() {
     const s = await api('/api/session');
-    if (!s.data.authed) return showLogin();
+    if (!s.data.authed) return showLogin(s.data.needsSetup);
+    try { SEED = (await (await fetch('/leads.json', { cache: 'no-store' })).json()).leads || []; } catch (e) { SEED = []; }
     const r = await api('/api/state');
     if (!r.ok) return showLogin();
     S = r.data.state || seed();
+    S.leads = S.leads || []; S.leadFlags = S.leadFlags || {};
     ['applications', 'outreach', 'targets', 'plan'].forEach(k => { S[k] = S[k] || (k === 'plan' ? planSeed() : []); });
     S.daily = S.daily || {}; S.weeks = S.weeks || {};
     if (!r.data.state) save();
@@ -396,7 +461,10 @@
   }
   $('#loginForm').addEventListener('submit', async e => {
     e.preventDefault();
-    const r = await api('/api/login', { method: 'POST', body: JSON.stringify({ password: $('#pw').value }) });
+    if (setupMode && $('#pw').value !== $('#pw2').value) { $('#loginErr').textContent = 'Passwords don\'t match.'; return; }
+    const r = setupMode
+      ? await api('/api/setup', { method: 'POST', body: JSON.stringify({ code: $('#code').value, password: $('#pw').value }) })
+      : await api('/api/login', { method: 'POST', body: JSON.stringify({ password: $('#pw').value }) });
     if (r.ok) { $('#loginErr').textContent = ''; boot(); }
     else $('#loginErr').textContent = r.data.error || 'Sign-in failed';
   });
