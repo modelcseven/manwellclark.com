@@ -268,3 +268,60 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   .mobile-bar a:first-child { background: var(--primary); color: #fff; }
   footer { padding-bottom: 96px; }
 }
+
+/* ---------- imagery ---------- */
+.nav-logo { height: 30px; width: auto; filter: drop-shadow(0 2px 8px rgba(30,154,232,.35)); }
+.foot-brand { display: inline-flex; align-items: center; gap: 8px; }
+.tile-bg { position: absolute !important; inset: 0; background-size: cover; background-position: right center; z-index: 0; }
+.t-intro { background: #05070a; min-height: 520px; }
+.t-intro .tile-bg { background-position: 85% 40%; opacity: .95; }
+.t-intro::after { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(5,7,10,.97) 0%, rgba(5,7,10,.88) 42%, rgba(5,7,10,.25) 75%, rgba(5,7,10,.1) 100%),
+              linear-gradient(0deg, rgba(5,7,10,.6), transparent 40%); }
+.t-intro > *:not(.tile-bg) { z-index: 1; max-width: 640px; }
+.t-profile { padding-top: 0; justify-content: flex-start; }
+.profile-banner { position: relative; height: 130px; margin: 0 -28px 0; width: calc(100% + 56px); background-size: cover; background-position: center 40%; }
+.profile-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,19,26,0) 30%, rgba(15,19,26,.95)); }
+.t-profile .avatar-ring { margin-top: -52px; z-index: 1; }
+.impact.big { background: #05070a; }
+.impact.big .tile-bg { background-position: 70% 30%; opacity: .55; }
+.impact.big::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(5,7,10,.95) 25%, rgba(5,7,10,.2) 80%); }
+.impact.big > *:not(.tile-bg) { z-index: 1; }
+
+.statement { position: relative; padding: 120px 0; overflow: hidden; margin: 24px 0; border-block: 1px solid var(--line); }
+.statement-bg { position: absolute; inset: 0; background-size: cover; background-position: center 45%; filter: saturate(1.1); }
+.statement-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(7,9,13,.55), rgba(7,9,13,.92)); }
+.statement-inner { position: relative; text-align: center; }
+.quote { font-size: clamp(1.8rem, 4.2vw, 3.4rem); line-height: 1.1; font-weight: 700; color: #fff; letter-spacing: -0.035em; margin: 14px auto 0; max-width: 900px; text-shadow: 0 4px 30px rgba(0,0,0,.6); }
+
+.speed-section { position: relative; overflow: hidden; }
+.section-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: .22; z-index: -1;
+  mask-image: linear-gradient(180deg, transparent, #000 20%, #000 70%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 20%, #000 70%, transparent); }
+.speed b { background: rgba(15,19,26,.9); }
+
+.build.feature { overflow: hidden; }
+.feature-logo { position: absolute !important; right: 24px; top: 24px; width: 180px; height: auto; opacity: .95; filter: drop-shadow(0 20px 40px rgba(30,154,232,.35)); animation: float 6s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-10px); } }
+@media (prefers-reduced-motion: reduce) { .feature-logo { animation: none; } }
+@media (max-width: 1024px) {
+  .t-intro { min-height: 0; }
+  .t-profile { flex-direction: column; text-align: center; align-items: center; }
+  .feature-logo { width: 120px; }
+}
+@media (max-width: 600px) {
+  .t-intro .tile-bg { background-position: 75% center; opacity: .5; }
+  .t-intro::after { background: linear-gradient(180deg, rgba(5,7,10,.75), rgba(5,7,10,.95)); }
+  .profile-banner { margin: 0 -22px; width: calc(100% + 44px); }
+  .feature-logo { width: 90px; right: 14px; top: 14px; }
+  .statement { padding: 80px 0; }
+}
+.t-intro .tile-bg { background-size: auto 118%; background-position: 135% 42%; background-repeat: no-repeat; opacity: 1; }
+.t-intro::after { background: linear-gradient(90deg, rgba(5,7,10,.98) 0%, rgba(5,7,10,.9) 46%, rgba(5,7,10,.35) 66%, rgba(5,7,10,0) 82%), linear-gradient(0deg, rgba(5,7,10,.5), transparent 35%); }
+.t-intro > *:not(.tile-bg) { max-width: 560px; }
+.t-intro h1 { font-size: clamp(2rem, 3.6vw, 3.1rem); }
+@media (max-width: 600px) { .t-intro .tile-bg { background-size: cover; background-position: 70% center; opacity: .45; } }
+.contact-tile { background: #05070a; }
+.contact-tile .tile-bg { background-position: 85% 35%; opacity: .55; }
+.contact-tile::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 90% at 40% 50%, rgba(5,7,10,.92) 30%, rgba(5,7,10,.45) 100%); }
+.contact-tile > *:not(.tile-bg) { z-index: 1; }
