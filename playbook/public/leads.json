@@ -1,27 +1,204 @@
 {
-  "generatedAt": "2026-11-12",
-  "note": "First search run by Claude: remote US, private sector, senior roles. Government and government-contractor postings excluded.",
-  "leads": [
-    {"id": "oj-sailpoint-tpm", "family": "Technical Program Management", "title": "Senior Technical Program Manager, Security", "company": "SailPoint", "salary": "$97.9K–$165K", "posted": "2026-11-11", "source": "OpenJobs", "url": "https://openjobshq.com/j/recQZWYxbi0ZjfZrE"},
-    {"id": "oj-gitlab-sectpm", "family": "Technical Program Management", "title": "Senior Security Technical Program Manager, Fraud & Abuse", "company": "GitLab", "salary": "$139.2K–$190K", "posted": "2026-11-06", "source": "OpenJobs", "url": "https://openjobshq.com/j/recMRPDfKNm10uGkq"},
-    {"id": "oj-jabil-dc", "family": "Technical Program Management", "title": "Technical Program Manager – Data Center Infrastructure", "company": "Jabil", "salary": "$132.4K–$238.4K", "posted": "2026-11-06", "source": "OpenJobs", "url": "https://openjobshq.com/j/recfcxkANU5Gt3pes"},
-    {"id": "oj-jabil-srprin", "family": "Technical Program Management", "title": "Sr. Principal Technical Program Manager", "company": "Jabil", "salary": "$164.2K–$295.6K", "posted": "2026-10-23", "source": "OpenJobs", "url": "https://openjobshq.com/j/recbZUVa7R14Q1FnN"},
-    {"id": "zr-nvidia-inference", "family": "Technical Program Management", "title": "Senior Technical Program Manager, AI Inference", "company": "NVIDIA", "salary": "$200K–$322K", "posted": "2026-10-24", "source": "ZipRecruiter", "url": "https://www.ziprecruiter.com/jobs-search?search=Senior+Technical+Program+Manager+AI+Inference+Nvidia&location=United+States&refine_by_location_type=only_remote"},
-    {"id": "zr-hyperscience-data", "family": "Technical Program Management", "title": "Sr Technical Program Manager, Data", "company": "Hyperscience", "salary": "$122K–$206.5K", "posted": "2026-11-03", "source": "ZipRecruiter", "url": "https://www.ziprecruiter.com/jobs-search?search=Sr+Technical+Program+Manager+Data+Hyperscience&location=United+States&refine_by_location_type=only_remote"},
-    {"id": "zr-lightning-infra", "family": "Technical Program Management", "title": "Technical Program Manager, Infrastructure Delivery", "company": "Lightning AI", "salary": "$160K–$220K", "posted": "2026-11-07", "source": "ZipRecruiter", "url": "https://www.ziprecruiter.com/jobs-search?search=Technical+Program+Manager+Infrastructure+Delivery+Lightning+AI&location=United+States&refine_by_location_type=only_remote"},
-    {"id": "zr-codemetal-tpm", "family": "Technical Program Management", "title": "Senior Technical Program Manager", "company": "Code Metal", "salary": "$135.5K–$218K", "posted": "2026-10-17", "source": "ZipRecruiter", "url": "https://www.ziprecruiter.com/jobs-search?search=Senior+Technical+Program+Manager+Code+Metal&location=United+States&refine_by_location_type=only_remote"},
-
-    {"id": "zr-umiami-portfolio", "family": "IT portfolio", "title": "IT Portfolio Manager, Health Applications", "company": "University of Miami", "salary": "$96.1K–$125.3K", "posted": "2026-10-24", "source": "ZipRecruiter", "url": "https://www.ziprecruiter.com/jobs-search?search=IT+Portfolio+Manager+Health+Applications+University+of+Miami&location=United+States&refine_by_location_type=only_remote"},
-    {"id": "zr-cpc-portfolio", "family": "IT portfolio", "title": "IT Program & Portfolio Manager", "company": "The Community Preservation Corporation", "salary": "$120K–$140K", "posted": "2026-10-22", "source": "ZipRecruiter", "url": "https://www.ziprecruiter.com/jobs-search?search=IT+Program+Portfolio+Manager+Community+Preservation+Corporation&location=United+States&refine_by_location_type=only_remote"},
-    {"id": "zr-qse7-portfolio", "family": "IT portfolio", "title": "Project Manager – Supply Chain Portfolio Management", "company": "QSE7", "salary": "$160K–$180K", "posted": "2026-11-05", "source": "ZipRecruiter", "url": "https://www.ziprecruiter.com/jobs-search?search=Project+Manager+Supply+Chain+Portfolio+Management+QSE7&location=United+States&refine_by_location_type=only_remote"},
-    {"id": "zr-aes-pxm", "family": "IT portfolio", "title": "IT Project / Program Manager III (Portfolio Management) — contract", "company": "The AES Group", "salary": "$100.8K–$119.2K", "posted": "2026-10-27", "source": "ZipRecruiter", "url": "https://www.ziprecruiter.com/jobs-search?search=IT+Project+Program+Manager+III+PXM+Portfolio+Management&location=United+States&refine_by_location_type=only_remote"},
-
-    {"id": "zr-immunic-aiarch", "family": "AI architecture", "title": "Director, Applied AI Architect", "company": "Immunic Therapeutics", "salary": "$220K–$250K", "posted": "2026-11-11", "source": "ZipRecruiter", "url": "https://www.ziprecruiter.com/jobs-search?search=Director+Applied+AI+Architect+Immunic&location=United+States&refine_by_location_type=only_remote"},
-    {"id": "zr-sanford-aiarch", "family": "AI architecture", "title": "Principal AI Architect", "company": "Sanford Health", "salary": "From $106K", "posted": "2026-11-11", "source": "ZipRecruiter", "url": "https://www.ziprecruiter.com/jobs-search?search=Principal+AI+Architect+Sanford+Health&location=United+States&refine_by_location_type=only_remote"},
-    {"id": "zr-ezenius-aiarch", "family": "AI architecture", "title": "AI Architect — contract", "company": "Ezenius Inc", "salary": "$150K–$200K", "posted": "2026-10-23", "source": "ZipRecruiter", "url": "https://www.ziprecruiter.com/jobs-search?search=AI+Architect+Ezenius&location=United+States&refine_by_location_type=only_remote"},
-    {"id": "zr-farai-research", "family": "AI programs", "title": "Technical Program Manager, Research", "company": "FAR.AI", "salary": "$130K–$200K", "posted": "2026-10-19", "source": "ZipRecruiter", "url": "https://www.ziprecruiter.com/jobs-search?search=Technical+Program+Manager+Research+FAR.AI&location=United+States&refine_by_location_type=only_remote"},
-
-    {"id": "zr-uchealth-pm", "family": "Project management", "title": "Project Manager IT Sr", "company": "UCHealth", "salary": "$97.1K–$145.7K", "posted": "2026-11-05", "source": "ZipRecruiter", "url": "https://www.ziprecruiter.com/jobs-search?search=Project+Manager+IT+Sr+UCHealth&location=United+States&refine_by_location_type=only_remote"},
-    {"id": "zr-lvs-pm", "family": "Project management", "title": "Sr Project Manager – IT", "company": "Las Vegas Sands", "salary": "$125.1K–$125.6K", "posted": "2026-10-16", "source": "ZipRecruiter", "url": "https://www.ziprecruiter.com/jobs-search?search=Sr+Project+Manager+IT+Las+Vegas+Sands&location=United+States&refine_by_location_type=only_remote"}
-  ]
+ "generatedAt": "2026-11-12",
+ "note": "USA remote only: fully remote roles open to US-based candidates, private sector, senior level. Government and government-contractor postings excluded.",
+ "leads": [
+  {
+   "id": "oj-sailpoint-tpm",
+   "family": "Technical Program Management",
+   "title": "Senior Technical Program Manager, Security",
+   "company": "SailPoint",
+   "salary": "$97.9K–$165K",
+   "posted": "2026-11-11",
+   "source": "OpenJobs",
+   "url": "https://openjobshq.com/j/recQZWYxbi0ZjfZrE",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "oj-gitlab-sectpm",
+   "family": "Technical Program Management",
+   "title": "Senior Security Technical Program Manager, Fraud & Abuse",
+   "company": "GitLab",
+   "salary": "$139.2K–$190K",
+   "posted": "2026-11-06",
+   "source": "OpenJobs",
+   "url": "https://openjobshq.com/j/recMRPDfKNm10uGkq",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "oj-jabil-dc",
+   "family": "Technical Program Management",
+   "title": "Technical Program Manager – Data Center Infrastructure",
+   "company": "Jabil",
+   "salary": "$132.4K–$238.4K",
+   "posted": "2026-11-06",
+   "source": "OpenJobs",
+   "url": "https://openjobshq.com/j/recfcxkANU5Gt3pes",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "oj-jabil-srprin",
+   "family": "Technical Program Management",
+   "title": "Sr. Principal Technical Program Manager",
+   "company": "Jabil",
+   "salary": "$164.2K–$295.6K",
+   "posted": "2026-10-23",
+   "source": "OpenJobs",
+   "url": "https://openjobshq.com/j/recbZUVa7R14Q1FnN",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "zr-nvidia-inference",
+   "family": "Technical Program Management",
+   "title": "Senior Technical Program Manager, AI Inference",
+   "company": "NVIDIA",
+   "salary": "$200K–$322K",
+   "posted": "2026-10-24",
+   "source": "ZipRecruiter",
+   "url": "https://www.ziprecruiter.com/jobs-search?search=Senior+Technical+Program+Manager+AI+Inference+Nvidia&location=United+States&refine_by_location_type=only_remote",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "zr-hyperscience-data",
+   "family": "Technical Program Management",
+   "title": "Sr Technical Program Manager, Data",
+   "company": "Hyperscience",
+   "salary": "$122K–$206.5K",
+   "posted": "2026-11-03",
+   "source": "ZipRecruiter",
+   "url": "https://www.ziprecruiter.com/jobs-search?search=Sr+Technical+Program+Manager+Data+Hyperscience&location=United+States&refine_by_location_type=only_remote",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "zr-lightning-infra",
+   "family": "Technical Program Management",
+   "title": "Technical Program Manager, Infrastructure Delivery",
+   "company": "Lightning AI",
+   "salary": "$160K–$220K",
+   "posted": "2026-11-07",
+   "source": "ZipRecruiter",
+   "url": "https://www.ziprecruiter.com/jobs-search?search=Technical+Program+Manager+Infrastructure+Delivery+Lightning+AI&location=United+States&refine_by_location_type=only_remote",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "zr-codemetal-tpm",
+   "family": "Technical Program Management",
+   "title": "Senior Technical Program Manager",
+   "company": "Code Metal",
+   "salary": "$135.5K–$218K",
+   "posted": "2026-10-17",
+   "source": "ZipRecruiter",
+   "url": "https://www.ziprecruiter.com/jobs-search?search=Senior+Technical+Program+Manager+Code+Metal&location=United+States&refine_by_location_type=only_remote",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "zr-umiami-portfolio",
+   "family": "IT portfolio",
+   "title": "IT Portfolio Manager, Health Applications",
+   "company": "University of Miami",
+   "salary": "$96.1K–$125.3K",
+   "posted": "2026-10-24",
+   "source": "ZipRecruiter",
+   "url": "https://www.ziprecruiter.com/jobs-search?search=IT+Portfolio+Manager+Health+Applications+University+of+Miami&location=United+States&refine_by_location_type=only_remote",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "zr-cpc-portfolio",
+   "family": "IT portfolio",
+   "title": "IT Program & Portfolio Manager",
+   "company": "The Community Preservation Corporation",
+   "salary": "$120K–$140K",
+   "posted": "2026-10-22",
+   "source": "ZipRecruiter",
+   "url": "https://www.ziprecruiter.com/jobs-search?search=IT+Program+Portfolio+Manager+Community+Preservation+Corporation&location=United+States&refine_by_location_type=only_remote",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "zr-qse7-portfolio",
+   "family": "IT portfolio",
+   "title": "Project Manager – Supply Chain Portfolio Management",
+   "company": "QSE7",
+   "salary": "$160K–$180K",
+   "posted": "2026-11-05",
+   "source": "ZipRecruiter",
+   "url": "https://www.ziprecruiter.com/jobs-search?search=Project+Manager+Supply+Chain+Portfolio+Management+QSE7&location=United+States&refine_by_location_type=only_remote",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "zr-aes-pxm",
+   "family": "IT portfolio",
+   "title": "IT Project / Program Manager III (Portfolio Management) — contract",
+   "company": "The AES Group",
+   "salary": "$100.8K–$119.2K",
+   "posted": "2026-10-27",
+   "source": "ZipRecruiter",
+   "url": "https://www.ziprecruiter.com/jobs-search?search=IT+Project+Program+Manager+III+PXM+Portfolio+Management&location=United+States&refine_by_location_type=only_remote",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "zr-immunic-aiarch",
+   "family": "AI architecture",
+   "title": "Director, Applied AI Architect",
+   "company": "Immunic Therapeutics",
+   "salary": "$220K–$250K",
+   "posted": "2026-11-11",
+   "source": "ZipRecruiter",
+   "url": "https://www.ziprecruiter.com/jobs-search?search=Director+Applied+AI+Architect+Immunic&location=United+States&refine_by_location_type=only_remote",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "zr-sanford-aiarch",
+   "family": "AI architecture",
+   "title": "Principal AI Architect",
+   "company": "Sanford Health",
+   "salary": "From $106K",
+   "posted": "2026-11-11",
+   "source": "ZipRecruiter",
+   "url": "https://www.ziprecruiter.com/jobs-search?search=Principal+AI+Architect+Sanford+Health&location=United+States&refine_by_location_type=only_remote",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "zr-ezenius-aiarch",
+   "family": "AI architecture",
+   "title": "AI Architect — contract",
+   "company": "Ezenius Inc",
+   "salary": "$150K–$200K",
+   "posted": "2026-10-23",
+   "source": "ZipRecruiter",
+   "url": "https://www.ziprecruiter.com/jobs-search?search=AI+Architect+Ezenius&location=United+States&refine_by_location_type=only_remote",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "zr-farai-research",
+   "family": "AI programs",
+   "title": "Technical Program Manager, Research",
+   "company": "FAR.AI",
+   "salary": "$130K–$200K",
+   "posted": "2026-10-19",
+   "source": "ZipRecruiter",
+   "url": "https://www.ziprecruiter.com/jobs-search?search=Technical+Program+Manager+Research+FAR.AI&location=United+States&refine_by_location_type=only_remote",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "zr-uchealth-pm",
+   "family": "Project management",
+   "title": "Project Manager IT Sr",
+   "company": "UCHealth",
+   "salary": "$97.1K–$145.7K",
+   "posted": "2026-11-05",
+   "source": "ZipRecruiter",
+   "url": "https://www.ziprecruiter.com/jobs-search?search=Project+Manager+IT+Sr+UCHealth&location=United+States&refine_by_location_type=only_remote",
+   "location": "Remote (US)"
+  },
+  {
+   "id": "zr-lvs-pm",
+   "family": "Project management",
+   "title": "Sr Project Manager – IT",
+   "company": "Las Vegas Sands",
+   "salary": "$125.1K–$125.6K",
+   "posted": "2026-10-16",
+   "source": "ZipRecruiter",
+   "url": "https://www.ziprecruiter.com/jobs-search?search=Sr+Project+Manager+IT+Las+Vegas+Sands&location=United+States&refine_by_location_type=only_remote",
+   "location": "Remote (US)"
+  }
+ ]
 }

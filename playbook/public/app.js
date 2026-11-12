@@ -191,11 +191,20 @@
 
   // ---------- Find jobs ----------
   const BOARDS = [
-    ['LinkedIn', q => 'https://www.linkedin.com/jobs/search/?keywords=' + encodeURIComponent(q) + '&location=United%20States&f_WT=2&f_E=4%2C5'],
-    ['Indeed', q => 'https://www.indeed.com/jobs?q=' + encodeURIComponent(q) + '&l=Remote'],
+    // every link is locked to United States + fully remote
+    ['LinkedIn', q => 'https://www.linkedin.com/jobs/search/?keywords=' + encodeURIComponent(q) + '&location=United%20States&geoId=103644278&f_WT=2&f_E=4%2C5'],
+    ['Indeed', q => 'https://www.indeed.com/jobs?q=' + encodeURIComponent(q) + '&l=United+States&sc=0kf%3Aattr%28DSQF7%29%3B'],
     ['ZipRecruiter', q => 'https://www.ziprecruiter.com/jobs-search?search=' + encodeURIComponent(q) + '&location=United+States&refine_by_location_type=only_remote'],
-    ['OpenJobs', q => 'https://openjobshq.com/?q=' + encodeURIComponent(q)]
+    ['OpenJobs', q => 'https://openjobshq.com/?q=' + encodeURIComponent(q + ' remote United States')]
   ];
+  // USA-remote guard: hide anything marked onsite/hybrid or tied to a non-US location
+  const NON_US = /\b(canada|uk|united kingdom|europe|emea|apac|latam|india|mexico|brazil|germany|france|spain|poland|philippines|australia|singapore|japan|ireland|netherlands|israel|south africa|nigeria|pakistan|argentina|colombia)\b/i;
+  function usRemote(l) {
+    const where = (l.location || '') + ' ' + (l.title || '');
+    if (/\b(on-?site|hybrid|in[- ]office)\b/i.test(where)) return false;
+    if (l.location && NON_US.test(l.location) && !/\b(us|usa|united states)\b/i.test(l.location)) return false;
+    return true;
+  }
   const SEARCHES = [
     ['Technical Program Management', 'Senior Technical Program Manager', 'fa-diagram-project'],
     ['IT portfolio', 'IT Portfolio Manager', 'fa-layer-group'],
@@ -206,7 +215,7 @@
   let SEED = [];
   function allLeads() {
     const st = S.leads || [], seen = new Set(st.map(l => l.id));
-    return st.concat(SEED.filter(l => !seen.has(l.id)).map(l => Object.assign({}, l)));
+    return st.concat(SEED.filter(l => !seen.has(l.id)).map(l => Object.assign({}, l))).filter(usRemote);
   }
   function leadState(l) { S.leadFlags = S.leadFlags || {}; return S.leadFlags[l.id] || {}; }
   function openLeads() { return allLeads().filter(l => { const f = leadState(l); return !f.tracked && !f.dismissed && !l.tracked && !l.dismissed; }); }
@@ -215,7 +224,7 @@
     const leads = openLeads().filter(l => !f || l.family === f).sort((a, b) => (b.fit || 0) - (a.fit || 0) || (b.posted || '').localeCompare(a.posted || ''));
     const fams = Array.from(new Set(allLeads().map(l => l.family).filter(Boolean)));
     return `
-    <div class="page-head"><div><h1>Find jobs</h1><p>Remote US · private sector · senior roles. Leads come from Claude's searches and, once set up, your n8n automation.</p></div></div>
+    <div class="page-head"><div><h1>Find jobs</h1><p><span class="badge b-blue"><i class="fa-solid fa-flag-usa"></i> USA remote only</span> Private sector · senior roles. Every search link and lead is limited to fully remote jobs open to US-based candidates.</p></div></div>
     <div class="grid g3">${SEARCHES.map(([fam, q, ic]) => `<div class="card search-card"><div class="card-head"><div><h2><i class="fa-solid ${ic}"></i> ${esc(q)}</h2><p>${esc(fam)}</p></div></div>
       <div class="board-links">${BOARDS.map(([b, u]) => `<a class="btn btn-ghost btn-sm" href="${u(q)}" target="_blank" rel="noopener">${b} <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`).join('')}</div></div>`).join('')}
       <div class="card search-card"><div class="card-head"><div><h2><i class="fa-solid fa-link"></i> Track a job by link</h2><p>Paste any posting URL</p></div></div>
@@ -224,9 +233,9 @@
     <div class="card" style="margin-top:16px">
       <div class="card-head"><div><h2>Fresh leads <span class="badge b-blue">${leads.length}</span></h2><p>Track a lead to move it into Applications as “Saved”. Dismiss what doesn't fit.</p></div>
         <select id="leadF" style="width:auto"><option value="">All roles</option>${fams.map(x => `<option ${x === f ? 'selected' : ''}>${esc(x)}</option>`).join('')}</select></div>
-      ${leads.length ? `<div class="table-wrap" style="box-shadow:none"><table><thead><tr><th>Role</th><th>Company</th><th>Pay</th><th>Posted</th><th>Source</th><th></th></tr></thead><tbody>
+      ${leads.length ? `<div class="table-wrap" style="box-shadow:none"><table><thead><tr><th>Role</th><th>Company</th><th>Where</th><th>Pay</th><th>Posted</th><th>Source</th><th></th></tr></thead><tbody>
       ${leads.map(l => `<tr style="cursor:default"><td><a href="${esc(l.url)}" target="_blank" rel="noopener"><strong>${esc(l.title)}</strong></a>${l.fit ? ` <span class="badge ${l.fit >= 75 ? 'b-green' : l.fit >= 55 ? 'b-amber' : 'b-gray'}">${l.fit}% fit</span>` : ''}<br><small class="muted">${esc(l.family || '')}${l.why ? ' · ' + esc(l.why) : ''}</small></td>
-        <td>${esc(l.company)}</td><td>${esc(l.salary || '—')}</td><td>${fmt(l.posted)}</td><td class="muted">${esc(l.source || '')}</td>
+        <td>${esc(l.company)}</td><td><small>${esc(l.location || 'Remote (US)')}</small></td><td>${esc(l.salary || '—')}</td><td>${fmt(l.posted)}</td><td class="muted">${esc(l.source || '')}</td>
         <td style="white-space:nowrap"><button class="btn btn-primary btn-sm" data-track="${esc(l.id)}"><i class="fa-solid fa-bookmark"></i> Track</button> <button class="icon-btn" data-dismiss="${esc(l.id)}" aria-label="Dismiss"><i class="fa-solid fa-xmark"></i></button></td></tr>`).join('')}
       </tbody></table></div>` : '<p class="muted">No open leads. Run a search above, or ask Claude for a fresh batch.</p>'}
     </div>`;
