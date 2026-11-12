@@ -15,8 +15,37 @@ const PUBLIC_DIR = path.join(__dirname, 'public');
 const SESSION_DAYS = 30;
 const MAX_BODY = 2 * 1024 * 1024;
 
-if (!PASSWORD) console.warn('[playbook] PLAYBOOK_PASSWORD is not set — logins will be refused.');
 fs.mkdirSync(DATA_DIR, { recursive: true });
+
+// ---------- owner password: env var, or set once in the browser ----------
+const AUTH_FILE = path.join(DATA_DIR, 'auth.json');
+function readAuth() { try { return JSON.parse(fs.readFileSync(AUTH_FILE, 'utf8')); } catch { return null; } }
+function hashPw(pw, salt) { return crypto.scryptSync(pw, salt, 64).toString('hex'); }
+function checkPassword(pw) {
+  if (typeof pw !== 'string' || !pw) return false;
+  if (PASSWORD) return pw.length === PASSWORD.length && crypto.timingSafeEqual(Buffer.from(pw), Buffer.from(PASSWORD));
+  const a = readAuth(); if (!a) return false;
+  const h = Buffer.from(hashPw(pw, a.salt), 'hex'), want = Buffer.from(a.hash, 'hex');
+  return h.length === want.length && crypto.timingSafeEqual(h, want);
+}
+function needsSetup() { return !PASSWORD && !readAuth(); }
+const SETUP_CODE = crypto.randomBytes(4).toString('hex').toUpperCase();
+if (needsSetup()) console.log(`[playbook] FIRST-RUN SETUP CODE: ${SETUP_CODE}  (enter it at the site to choose your password)`);
+
+// ---------- automation key for n8n (env, or generated once and stored) ----------
+const KEY_FILE = path.join(DATA_DIR, 'automation-key.txt');
+let AUTOMATION_KEY = process.env.AUTOMATION_KEY || '';
+if (!AUTOMATION_KEY) {
+  try { AUTOMATION_KEY = fs.readFileSync(KEY_FILE, 'utf8').trim(); } catch {
+    AUTOMATION_KEY = crypto.randomBytes(24).toString('base64url');
+    fs.writeFileSync(KEY_FILE, AUTOMATION_KEY, { mode: 0o600 });
+  }
+}
+console.log('[playbook] automation key is stored in ' + KEY_FILE + ' (view it from the Coolify terminal; not printed here)');
+function keyOk(req) {
+  const k = req.headers['x-playbook-key'] || '';
+  return k.length === AUTOMATION_KEY.length && crypto.timingSafeEqual(Buffer.from(k), Buffer.from(AUTOMATION_KEY));
+}
 
 // ---------- storage ----------
 function readState() {
@@ -104,8 +133,7 @@ const server = http.createServer(async (req, res) => {
     if (p === '/api/login' && req.method === 'POST') {
       if (throttled(ip)) return json(res, 429, { error: 'Too many attempts. Try again in 15 minutes.' });
       const { password } = JSON.parse(await body(req) || '{}');
-      const ok = PASSWORD && typeof password === 'string' && password.length === PASSWORD.length &&
-        crypto.timingSafeEqual(Buffer.from(password), Buffer.from(PASSWORD));
+      const ok = checkPassword(password);
       if (!ok) { attempts.get(ip).n++; return json(res, 401, { error: 'Wrong password.' }); }
       attempts.delete(ip);
       return json(res, 200, { ok: true }, { 'Set-Cookie': `pb_session=${makeToken()}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${SESSION_DAYS * 86400}${secure ? '; Secure' : ''}` });
@@ -113,7 +141,47 @@ const server = http.createServer(async (req, res) => {
     if (p === '/api/logout' && req.method === 'POST') {
       return json(res, 200, { ok: true }, { 'Set-Cookie': 'pb_session=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0' });
     }
-    if (p === '/api/session') return json(res, 200, { authed: authed(req) });
+    if (p === '/api/session') return json(res, 200, { authed: authed(req), needsSetup: needsSetup() });
+
+    if (p === '/api/setup' && req.method === 'POST') {
+      if (!needsSetup()) return json(res, 409, { error: 'Already set up.' });
+      if (throttled(ip)) return json(res, 429, { error: 'Too many attempts. Try again in 15 minutes.' });
+      const { code, password } = JSON.parse(await body(req) || '{}');
+      if (String(code || '').trim().toUpperCase() !== SETUP_CODE) { attempts.get(ip).n++; return json(res, 401, { error: 'Setup code is wrong. Find it in the Coolify logs for this app.' }); }
+      if (typeof password !== 'string' || password.length < 10) return json(res, 400, { error: 'Use at least 10 characters.' });
+      const salt = crypto.randomBytes(16).toString('hex');
+      fs.writeFileSync(AUTH_FILE, JSON.stringify({ salt, hash: hashPw(password, salt), createdAt: new Date().toISOString() }), { mode: 0o600 });
+      return json(res, 200, { ok: true }, { 'Set-Cookie': `pb_session=${makeToken()}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${SESSION_DAYS * 86400}${secure ? '; Secure' : ''}` });
+    }
+
+    // n8n / automation: push job leads in (header X-Playbook-Key)
+    if (p === '/api/leads' && req.method === 'POST') {
+      if (!keyOk(req)) return json(res, 401, { error: 'Bad automation key' });
+      const incoming = JSON.parse(await body(req) || '{}');
+      const list = Array.isArray(incoming.leads) ? incoming.leads : [];
+      const state = readState() || { rev: 0 };
+      state.leads = state.leads || [];
+      const seen = new Set(state.leads.map(l => l.id || l.url));
+      let added = 0;
+      list.slice(0, 200).forEach(l => {
+        if (!l || !l.title || !l.url) return;
+        const id = String(l.id || l.url).slice(0, 300);
+        if (seen.has(id)) return;
+        seen.add(id); added++;
+        state.leads.push({ id, title: String(l.title).slice(0, 200), company: String(l.company || '').slice(0, 120), family: String(l.family || '').slice(0, 60),
+          salary: String(l.salary || '').slice(0, 60), posted: String(l.posted || '').slice(0, 20), source: String(l.source || 'n8n').slice(0, 40),
+          url: String(l.url).slice(0, 1000), fit: Math.max(0, Math.min(100, Number(l.fit) || 0)) || undefined, why: String(l.why || '').slice(0, 600), addedAt: new Date().toISOString() });
+      });
+      state.rev = (state.rev || 0) + 1; state.savedAt = new Date().toISOString();
+      writeState(state);
+      return json(res, 200, { added, total: state.leads.length });
+    }
+    if (p === '/api/digest' && req.method === 'GET') {
+      if (!keyOk(req)) return json(res, 401, { error: 'Bad automation key' });
+      const st = readState() || {};
+      return json(res, 200, { applications: (st.applications || []).length, outreach: (st.outreach || []).length,
+        openLeads: (st.leads || []).filter(l => !l.dismissed && !l.tracked).length, savedAt: st.savedAt || null });
+    }
 
     if (p === '/api/state') {
       if (!authed(req)) return json(res, 401, { error: 'Sign in first.' });
