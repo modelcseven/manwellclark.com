@@ -47,6 +47,16 @@ function keyOk(req) {
   return k.length === AUTOMATION_KEY.length && crypto.timingSafeEqual(Buffer.from(k), Buffer.from(AUTOMATION_KEY));
 }
 
+// ---------- USA remote only ----------
+const NON_US = /\b(canada|uk|united kingdom|europe|emea|apac|latam|india|mexico|brazil|germany|france|spain|poland|philippines|australia|singapore|japan|ireland|netherlands|israel|south africa|nigeria|pakistan|argentina|colombia)\b/i;
+function usRemote(l) {
+  const loc = String(l.location || ''), where = loc + ' ' + String(l.title || '');
+  if (/\b(on-?site|hybrid|in[- ]office)\b/i.test(where)) return false;
+  if (!loc) return false; // automation must say where the job can be done
+  if (NON_US.test(loc) && !/\b(us|usa|united states)\b/i.test(loc)) return false;
+  return /\b(us|usa|u\.s\.|united states|remote)\b/i.test(loc);
+}
+
 // ---------- storage ----------
 function readState() {
   try { return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')); } catch { return null; }
@@ -162,19 +172,20 @@ const server = http.createServer(async (req, res) => {
       const state = readState() || { rev: 0 };
       state.leads = state.leads || [];
       const seen = new Set(state.leads.map(l => l.id || l.url));
-      let added = 0;
+      let added = 0, rejected = 0;
       list.slice(0, 200).forEach(l => {
         if (!l || !l.title || !l.url) return;
+        if (!usRemote(l)) { rejected++; return; }
         const id = String(l.id || l.url).slice(0, 300);
         if (seen.has(id)) return;
         seen.add(id); added++;
         state.leads.push({ id, title: String(l.title).slice(0, 200), company: String(l.company || '').slice(0, 120), family: String(l.family || '').slice(0, 60),
           salary: String(l.salary || '').slice(0, 60), posted: String(l.posted || '').slice(0, 20), source: String(l.source || 'n8n').slice(0, 40),
-          url: String(l.url).slice(0, 1000), fit: Math.max(0, Math.min(100, Number(l.fit) || 0)) || undefined, why: String(l.why || '').slice(0, 600), addedAt: new Date().toISOString() });
+          url: String(l.url).slice(0, 1000), location: String(l.location || 'Remote (US)').slice(0, 80), fit: Math.max(0, Math.min(100, Number(l.fit) || 0)) || undefined, why: String(l.why || '').slice(0, 600), addedAt: new Date().toISOString() });
       });
       state.rev = (state.rev || 0) + 1; state.savedAt = new Date().toISOString();
       writeState(state);
-      return json(res, 200, { added, total: state.leads.length });
+      return json(res, 200, { added, rejected, total: state.leads.length });
     }
     if (p === '/api/digest' && req.method === 'GET') {
       if (!keyOk(req)) return json(res, 401, { error: 'Bad automation key' });
