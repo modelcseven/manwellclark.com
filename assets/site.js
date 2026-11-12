@@ -103,3 +103,20 @@
   }
   if (document.readyState === 'complete') initMap(); else window.addEventListener('load', initMap);
 })();
+
+// Role-fit tabs (also opens from #roles-<key> links)
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.role-tabs [role="tab"]'));
+  function select(t) {
+    tabs.forEach(function (x) { var on = x === t; x.setAttribute('aria-selected', on ? 'true' : 'false'); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute('aria-controls')).hidden = !on; });
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(t); });
+    t.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d) { e.preventDefault(); var n = tabs[(i + d + tabs.length) % tabs.length]; select(n); n.focus(); }
+    });
+  });
+  var h = location.hash.match(/^#role-(tpm|ppm|ai|pm)$/);
+  if (h) { var t = document.getElementById('t-' + h[1]); if (t) { select(t); document.getElementById('roles').scrollIntoView(); } }
+})();
